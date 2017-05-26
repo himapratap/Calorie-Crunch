@@ -1,76 +1,190 @@
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+    <!-- Header -->
+    <header id="header">
+        <h1><a href="/">Calorie Crunch</a></h1>
+        <nav id="nav">
+            <ul>
+                <li class="special">
+                    <a href="#menu" class="menuToggle"><span>Menu</span></a>
+                    <div id="menu">
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <!-- <li><a href="generic.html">Generic</a></li> -->
+                            <!-- <li><a href="elements.html">Elements</a></li> -->
+                            <!-- <li><a href="#">Sign Up</a></li> -->
+                            <!-- <li><a href="#">Log In</a></li> -->
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Main -->
+    <section id="three" class="wrapper style3 special">
+        <div class="inner">
+            <header class="major">
+                <h2>Welcome, {{name}}!</h2>
+                <p>You ate, you worked out, you crunched!
+                    <br>Tell us about it.</p>
+            </header>
+            <ul class="features">
+                <li class="icon fa-plus">
+                    <h3>Add Food</h3>
+                    <form method="post" action="#">
+                        <div class="row uniform">
+                            <div class="12u 12u$(xsmall)">
+                                <input type="text" name="name" id="demo-name" value="" placeholder="Name" />
+                            </div>
+                            <div class="12u 12u$(xsmall)">
+                                <input type="text" name="quantity" id="demo-name" value="" placeholder="Quantity" />
+                            </div>
+                            <div class="12u$">
+                                <ul class="actions">
+                                    <li>
+                                        <input type="submit" value="Add" class="special" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                    <div>
+                        <h3>Nutrition Facts</h3>
+                        <table>
+                            <thead>
+                                <!--                                     <tr>
+                                    <th>Name</th>
+                                    <th>Content</th>
+                                </tr> -->
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Serving Size:</td>
+                                    <td>{{serving}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Calories:</td>
+                                    <td>{{calorie}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Calories from Fat:</td>
+                                    <td>{{caloriefat}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Fat:</td>
+                                    <td>{{totalfat}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Cholesterol:</td>
+                                    <td>{{cholesterol}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Sodium:</td>
+                                    <td>{{sodium}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Carbohydrates:</td>
+                                    <td>{{carb}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Protein:</td>
+                                    <td>{{protein}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </li>
+                <li class="icon fa-laptop">
+                    <h3>Date: May, 26, 2017<br>Time: 5:30pm</h3>
+                    <!-- <h4>Calories Consumed: 750	<br>Total Calories left: 1500</h4> -->
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Food</th>
+                                    <th>Calories</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{time}}</td>
+                                    <td>{{food}}</td>
+                                    <td>{{calorieList}}</td>
+                                </tr>
+                                 <tr>
+                                    <td>6:00 am (Example)</td>
+                                    <td>Oatmeal (Example)</td>
+                                    <td>500 (Example)</td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2"></td>
+                                    <td>Total:{{total}}</td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </li>
+<!--                     <li class="icon fa-code">
+                    <h3>Mus Scelerisque</h3>
+                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+                </li>
+                <li class="icon fa-headphones">
+                    <h3>Mauris Imperdiet</h3>
+                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+                </li>
+                <li class="icon fa-heart-o">
+                    <h3>Aenean Primis</h3>
+                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+                </li>
+                <li class="icon fa-flag-o">
+                    <h3>Tortor Ut</h3>
+                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
+                </li> -->
+            </ul>
+        </div>
+    </section>
+
+		<section id="one" class="wrapper style1 special">
+        <div class="inner">
+            <header class="major">
+                <h2>History</h2>
+                <p>The graph will go here!</p>
+            </header>
+            
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+            <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+        </ul>
+        <ul class="copyright">
+            <li>&copy; Rutgers Coding Project 2</li>
+        </ul>
+    </footer>
+</div>
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
 
 
-		<!-- Page Wrapper -->
-			<div id="page-wrapper">
 
-				<!-- Header -->
-					<header id="header">
-						<h1><a href="index.html">Calorie Crunch</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="index.html">Home</a></li>
-											<!-- <li><a href="generic.html">Generic</a></li> -->
-											<!-- <li><a href="elements.html">Elements</a></li> -->
-											<!-- <li><a href="#">Sign Up</a></li> -->
-											<!-- <li><a href="#">Log In</a></li> -->
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
 
-				<!-- Main -->
-					<article id="main">
-<!-- 						<header>
-							<h2>Elements</h2>
-							<p>Aliquam ut ex ut interdum donec amet imperdiet eleifend</p>
-						</header> -->
-						<section class="wrapper style5">
-							<div class="inner">
-								<section>
-									<h2>Welcome, {{name}}!</h2>
-									<!-- <h5>Left &amp; Right</h5> -->
-									<p><span class="image left"><img src="./assets/images/bob.jpg" alt="" /></span>
-									<b>Name:</b> {{name}}<br>
-									<b>Age:</b> 35<br>
-									<b>Weight:</b> 150 lbs<br>
-									<b>Height:</b> 5'7<br>
-									<b>Gender:</b> Male<br>
-									<b>Activity Level:</b> High<br>
-									</p>
-									<br><br><br><br><br><br><br><br><br>
-								</section>
 
-							</div>
-						</section>
-					</article>
 
-				<!-- Footer -->
-					<footer id="footer">
-						<ul class="icons">
-							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-							<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-						</ul>
-						<ul class="copyright">
-							<li>&copy; Untitled</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</footer>
 
-			</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
+

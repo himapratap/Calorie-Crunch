@@ -36,7 +36,10 @@ router.post("/verifyLogin",passport.authenticate("local"), function(req, res) {
   // So we're sending the user back the route to the members page because the redirect will happen on the front end
   // They won't get this or even be able to access this page if they aren't authed
 console.log("verifyLogin");
-res.render("members", "");
+// res.render("members", "");
+res.render("user", {
+            'name': req.body.name
+        });
 });
 // Direct to Login page
 // router.post("/verifyLogin", (req, res) => passport.authenticate('local', {
