@@ -10,8 +10,8 @@
 					<a href="#menu" class="menuToggle"><span>Menu</span></a>
 					<div id="menu">
 						<ul>
-							<li><a href="index.html">Home</a></li>
-							<li><a href="signup.html">Sign Up Page Example</a></li>
+							<li><a href="/">Home</a></li>
+							<li><a href="/signup">Sign Up</a></li>
 							<li><a href="user.html">User Profile Example</a></li>
 							<!-- <li><a href="elements.html">Elements</a></li> -->
 							<!-- <li><a href="#">Sign Up</a></li> -->
@@ -77,11 +77,49 @@
 		<section class="spotlight">
 			<div class="image"><img src="assets/images/mac.jpg" alt="" /></div>
 			<div class="content">
-				<h3>(After hitting submit, nutritionix api is hit and user sees this):<br /></h3>
-				<h2>7.5 oz Big Mac<br /></h2>
-				<p><b>Calories:</b> 540 kcal<br>
-					<b>Weight:</b> 212g<br>
-					<b>Consumed at:</b> 05/24/2017 6:30pm</p>
+				<h2>{{name}}<br/></h2>
+					<table>
+                            <thead>
+                                <!--                                     <tr>
+                                    <th>Name</th>
+                                    <th>Content</th>
+                                </tr> -->
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Serving Size:</td>
+                                    <td>{{serving}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Calories:</td>
+                                    <td>{{calorie}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Calories from Fat:</td>
+                                    <td>{{caloriefat}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Fat:</td>
+                                    <td>{{totalfat}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Cholesterol:</td>
+                                    <td>{{cholesterol}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Sodium:</td>
+                                    <td>{{sodium}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Total Carbohydrates:</td>
+                                    <td>{{carb}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Protein:</td>
+                                    <td>{{protein}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
 			</div>
 		</section>
 		<!-- <section class="spotlight">
