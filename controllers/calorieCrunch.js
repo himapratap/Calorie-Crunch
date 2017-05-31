@@ -75,7 +75,7 @@ router.post("/searchfood", function(req, res) {
     let appID = "48e9aea9";
     let appKey = "3cfd31e974a75dc9c2b9cc64a1b40dd6";
 
-    request("https://api.nutritionix.com/v1_1/search/"+items+"?results=0:20&fields=item_name,nf_servings_per_container,nf_saturated_fat,nf_sodium,nf_total_carbohydrate,nf_dietary_fiber,nf_sugars,nf_protein,nf_serving_size_qty,nf_total_fat,brand_name,item_id,nf_calories&appId="+appID+"&appKey="+appKey, function(error, response, body) {
+    request("https://api.nutritionix.com/v1_1/search/"+items+"?results=0:10&fields=item_name,nf_servings_per_container,nf_cholestorol,nf_saturated_fat,nf_sodium,nf_total_carbohydrate,nf_dietary_fiber,nf_sugars,nf_protein,nf_serving_size_qty,nf_total_fat,brand_name,item_id,nf_calories&appId="+appID+"&appKey="+appKey, function(error, response, body) {
 
       // If there were no errors and the response code was 200 (i.e. the request was successful)...
       if (!error && response.statusCode === 200) {
@@ -108,7 +108,7 @@ router.post("/addFood", (req, res) => {
         food: req.body.food,
         quantity: req.body.quantity,
         time: db.sequelize.literal('CURRENT_TIMESTAMP'),
-        userId: req.body.userId
+        UserId: req.body.userId
     };
 
 
