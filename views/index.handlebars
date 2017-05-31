@@ -52,16 +52,16 @@
                         </li>
                 </ul>
                 
-                <form method="post" action="#">
+                <form method="post" action="/searchfood">
                 <div id="output">--</div>
                     <div class="row uniform">
                         <div class="12u 12u$(xsmall)">
-                            <input type="text" name="demo-name" value="" placeholder="ie. One big mac" />
+                            <input type="text" name="foodsearch" value="" id="items" placeholder="ie. One big mac" />
                         </div>
                         <div class="12u$">
                             <ul class="actions">
                                 <li>
-                                    <input type="submit" value="Submit" class="special" />
+                                    <input type="submit" value="Submit" class="special" id="submitfood" />
                                 </li>
                                 <li>
                                     <input type="reset" value="Reset" />
@@ -70,6 +70,8 @@
                         </div>
                     </div>
                 </form>
+
+
             </div>
         </section>
         {{!-- Watson Code --}}

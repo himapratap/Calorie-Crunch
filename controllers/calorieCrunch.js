@@ -7,6 +7,7 @@
 // where references to our outmoded ORM file once sat.
 var express = require("express");
 var passport = require("../config/passport");
+var request = require("request")
 
 
 var router = express.Router();
@@ -66,6 +67,41 @@ router.post("/signup", function(req, res) {
     });
 });
 
+
+router.post("/searchfood", function(req, res) {
+
+
+    let items = req.body.foodsearch
+    let appID = "48e9aea9";
+    let appKey = "3cfd31e974a75dc9c2b9cc64a1b40dd6";
+
+    request("https://api.nutritionix.com/v1_1/search/"+items+"?results=0:20&fields=item_name,nf_servings_per_container,nf_saturated_fat,nf_sodium,nf_total_carbohydrate,nf_dietary_fiber,nf_sugars,nf_protein,nf_serving_size_qty,nf_total_fat,brand_name,item_id,nf_calories&appId="+appID+"&appKey="+appKey, function(error, response, body) {
+
+      // If there were no errors and the response code was 200 (i.e. the request was successful)...
+      if (!error && response.statusCode === 200) {
+  body = JSON.parse(body);
+             console.log(body.hits[0])
+             // console.log(body)
+             // console.log(body)
+
+
+      }
+    });
+
+    // db.User.create({
+    //     email: req.body.email,
+    //     password: req.body.password
+    // }).then(function() {
+    //     console.log("signup complete");
+    //     res.render("user", {
+    //         'name': req.body.name
+    //     });
+
+    // }).catch(function(err) {
+    //     res.json(err);
+    // });
+});
+
 router.post("/addFood", (req, res) => {
     console.log("adding food", req.body);
     let food = {
@@ -74,6 +110,7 @@ router.post("/addFood", (req, res) => {
         time: db.sequelize.literal('CURRENT_TIMESTAMP'),
         userId: req.body.userId
     };
+
 
     db.Activity.create(food, {
         raw: true
