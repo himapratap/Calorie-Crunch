@@ -28,7 +28,14 @@ Object.keys(db).forEach(function(modelName) {
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
+  console.log(modelName);
+
 });
+
+db['User'].hasMany(db['Activity']);
+db['Activity'].belongsTo(db['User']);
+
+
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

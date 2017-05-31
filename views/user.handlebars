@@ -31,10 +31,12 @@
             <ul class="features">
                 <li class="icon fa-plus">
                     <h3>Add Food</h3>
-                    <form method="post" action="#">
+                    <form method="post" action="/addFood">
                         <div class="row uniform">
+                          <input type="hidden" name="userId" id="demo-name" value="{{id}}" placeholder="Name">
+
                             <div class="12u 12u$(xsmall)">
-                                <input type="text" name="name" id="demo-name" value="" placeholder="Name" />
+                                <input type="text" name="food" id="demo-name" value="" placeholder="Food" />
                             </div>
                             <div class="12u 12u$(xsmall)">
                                 <input type="text" name="quantity" id="demo-name" value="" placeholder="Quantity" />
@@ -153,7 +155,7 @@
                 <h2>History</h2>
                 <p>The graph will go here!</p>
             </header>
-            
+
         </div>
     </section>
 
@@ -179,12 +181,3 @@
 <script src="assets/js/util.js"></script>
 <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script src="assets/js/main.js"></script>
-
-
-
-
-
-
-
-
-

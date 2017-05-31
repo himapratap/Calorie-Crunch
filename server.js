@@ -22,19 +22,23 @@ var app = express();
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(__dirname + "/public"));
 
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+app.use(session({
+    secret: "keyboard cat",
+    resave: true,
+    saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({
-  extended: false
+    extended: false
 }));
 // override with POST having ?_method=DELETE
 app.use(methodOverride("_method"));
 var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({
-  defaultLayout: "main"
+    defaultLayout: "main"
 }));
 app.set("view engine", "handlebars");
 
@@ -95,7 +99,9 @@ if (!process.env.VCAP_SERVICES) {
 
 
 // listen on port 3000
-var port = process.env.PORT || 3000;
+let port = process.env.PORT || 3000;
 db.sequelize.sync().then(function() {
-  app.listen(port);
+    app.listen(port, function() {
+        console.log(`Listening on port: ${port}`);
+    });
 });

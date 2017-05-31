@@ -7,18 +7,22 @@ var db = require("../models");
 passport.use(new LocalStrategy(
     // Our user will sign in using an email, rather than a "username"
     {
-        usernameField: "email"
+        usernameField: "email",
+        passReqToCallback: true // allows us to pass back the entire request to the callback
+
     },
-    function(email, password, done) {
+    function(req, email, password, done) {
         // When a user tries to sign in this code runs
         console.log("finding one..");
-
+        console.log( req.body);
         db.User.findOne({
             where: {
                 email: email
             }
         }).then(function(dbUser) {
             // If there's no user with the given email
+            console.log("passport.js found dbuser");
+
             if (!dbUser) {
                 console.log("incorrect mail");
                 return done(null, false, {
@@ -32,6 +36,8 @@ passport.use(new LocalStrategy(
                 });
             }
             // If none of the above, return the user
+            console.log("passport.js returning dbuser");
+            debugger;
             return done(null, dbUser);
         });
     }
