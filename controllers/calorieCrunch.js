@@ -35,10 +35,10 @@ router.get("/login", function(req, res) {
 router.post("/verifyLogin", passport.authenticate("local", {
     successRedirect: '/user', // redirect to the secure profile section
     failureRedirect: '/login', // redirect back to the signup page if there is an error
- }));
+}));
 
 router.get("/user", isAuthenticated, function(req, res) {
-     res.render("user",req.session.passport.user);
+    res.render("user", req.session.passport.user);
 });
 
 router.post("/signup", function(req, res) {
@@ -66,6 +66,18 @@ router.post("/signup", function(req, res) {
     });
 });
 
+router.post("/addFood", (req, res) => {
+    console.log("adding food", req.body);
+    let food = {
+        food: req.body.food,
+        quantity: req.body.quantity,
+        time: db.sequelize.literal('CURRENT_TIMESTAMP'),
+        userId: req.body.userId
+    };
 
+    db.Activity.create(food, {
+        raw: true
+    }).then(res.redirect("/user"))
+});
 
 module.exports = router;

@@ -51,7 +51,7 @@ app.use("/create", routes);
 
 // listen on port 3000
 let port = process.env.PORT || 3000;
-db.sequelize.sync({force : true}).then(function() {
+db.sequelize.sync().then(function() {
     app.listen(port, function() {
         console.log(`Listening on port: ${port}`);
     });

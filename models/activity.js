@@ -6,20 +6,20 @@ module.exports = function(sequelize, DataTypes) {
     var Activity = sequelize.define("Activity", {
         // The email cannot be null, and must be a proper email before creation
         time: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             //  allowNull: false
         },
-        data: {
-            type: DataTypes.TEXT,
+        food: {
+            type: DataTypes.STRING,
             //allowNull: false,
-            validate: {
-                isEmail: true
-            }
         },
-        // The password cannot be null
-        total: {
+        quantity: {
             type: DataTypes.INTEGER,
-            //allowNull: false
+            //allowNull: false,
+        },
+        calories: {
+            type: DataTypes.INTEGER,
+            //allowNull: false,
         }
 
     });
