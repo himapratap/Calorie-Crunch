@@ -59,8 +59,8 @@ router.post("/signup", function(req, res) {
         height: req.body.height,
         weight: req.body.weight,
         gender: req.body.gender,
+        age : req.body.age,
         activityLevel: req.body.activityLevel,
-      //  age: req.body.age,
         totalCalories:totalCal
 
     };
@@ -82,35 +82,25 @@ router.post("/signup", function(req, res) {
 router.post("/searchfood", function(req, res) {
 
 
-    let items = req.body.foodsearch;
+    let item = req.body.foodsearch;
+
     let appID = "48e9aea9";
     let appKey = "3cfd31e974a75dc9c2b9cc64a1b40dd6";
+    let url = "https://api.nutritionix.com/v1_1/search/" + item + "?results=0:10&fields=item_name,nf_servings_per_container,nf_cholestorol,nf_saturated_fat,nf_sodium,nf_total_carbohydrate,nf_dietary_fiber,nf_sugars,nf_protein,nf_serving_size_qty,nf_total_fat,brand_name,item_id,nf_calories&appId=" + appID + "&appKey=" + appKey;
+    request(url, function(error, response, body) {
 
-    request("https://api.nutritionix.com/v1_1/search/"+items+"?results=0:10&fields=item_name,nf_servings_per_container,nf_cholestorol,nf_saturated_fat,nf_sodium,nf_total_carbohydrate,nf_dietary_fiber,nf_sugars,nf_protein,nf_serving_size_qty,nf_total_fat,brand_name,item_id,nf_calories&appId="+appID+"&appKey="+appKey, function(error, response, body) {
-
-      // If there were no errors and the response code was 200 (i.e. the request was successful)...
-      if (!error && response.statusCode === 200) {
-  body = JSON.parse(body);
-             console.log(body.hits[0])
-             // console.log(body)
-             // console.log(body)
-
-
-      }
+        // If there were no errors and the response code was 200 (i.e. the request was successful)...
+        if (!error && response.statusCode === 200) {
+            body = JSON.parse(body);
+            let data = body.hits;
+            let items = data.map((x) => {
+                return x.fields;
+            })
+            console.log('Retrieved items after searching!');
+            res.render('index', {'items' :items});
+        }
     });
 
-    // db.User.create({
-    //     email: req.body.email,
-    //     password: req.body.password
-    // }).then(function() {
-    //     console.log("signup complete");
-    //     res.render("user", {
-    //         'name': req.body.name
-    //     });
-
-    // }).catch(function(err) {
-    //     res.json(err);
-    // });
 });
 
 router.post("/addFood", (req, res) => {
@@ -128,4 +118,9 @@ router.post("/addFood", (req, res) => {
     }).then(res.redirect("/user"))
 });
 
+/*Function to logout clearing the user from session*/
+router.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 module.exports = router;
