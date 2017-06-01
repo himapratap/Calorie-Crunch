@@ -44,6 +44,14 @@ router.get("/user", isAuthenticated, function(req, res) {
 
 router.post("/signup", function(req, res) {
     console.log(`Starting signup process : }`);
+    let totalCal=1200;
+    if(req.body.gender==="Male")
+    {
+        totalCal=10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * 9 + 5
+    }else
+    {
+       totalCal= 10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * 9 - 161.
+    }
     let user = {
         name: req.body.name,
         email: req.body.email,
@@ -51,7 +59,10 @@ router.post("/signup", function(req, res) {
         height: req.body.height,
         weight: req.body.weight,
         gender: req.body.gender,
-        activityLevel: req.body.activityLevel
+        activityLevel: req.body.activityLevel,
+      //  age: req.body.age,
+        totalCalories:totalCal
+
     };
     db.User.create(user, {
         raw: true
@@ -71,7 +82,7 @@ router.post("/signup", function(req, res) {
 router.post("/searchfood", function(req, res) {
 
 
-    let items = req.body.foodsearch
+    let items = req.body.foodsearch;
     let appID = "48e9aea9";
     let appKey = "3cfd31e974a75dc9c2b9cc64a1b40dd6";
 
