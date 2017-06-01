@@ -1,11 +1,7 @@
 {
   "development": {
     "username": "root",
-<<<<<<< HEAD
     "password": null,
-=======
-    "password": "1111",
->>>>>>> 9e141604b8a56bf394fe22a800693a8b83f6b831
     "database": "calorie_crunch",
     "host": "127.0.0.1",
     "dialect": "mysql"
