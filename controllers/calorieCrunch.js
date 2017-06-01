@@ -44,6 +44,14 @@ router.get("/user", isAuthenticated, function(req, res) {
 
 router.post("/signup", function(req, res) {
     console.log(`Starting signup process : }`);
+    let totalCal=1200;
+    if(req.body.gender==="Male")
+    {
+        totalCal=10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * 9 + 5
+    }else
+    {
+       totalCal= 10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * 9 - 161.
+    }
     let user = {
         name: req.body.name,
         email: req.body.email,
@@ -52,7 +60,9 @@ router.post("/signup", function(req, res) {
         weight: req.body.weight,
         gender: req.body.gender,
         age : req.body.age,
-        activityLevel: req.body.activityLevel
+        activityLevel: req.body.activityLevel,
+        totalCalories:totalCal
+
     };
     db.User.create(user, {
         raw: true

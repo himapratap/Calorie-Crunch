@@ -22,11 +22,11 @@ module.exports = function(sequelize, DataTypes) {
             //allowNull: false
         },
         height: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             //    allowNull: false
         },
         weight: {
-            type: DataTypes.STRING,
+            type: DataTypes.INTEGER,
             //  allowNull: false
         },
         gender: {
@@ -35,6 +35,15 @@ module.exports = function(sequelize, DataTypes) {
         },
         activityLevel: {
             type: DataTypes.STRING,
+            //allowNull: false
+        },
+
+        // age:{
+        //     type: DataTypes.INTEGER,
+        //     //allowNull: false
+        // },
+        totalCalories:{
+            type: DataTypes.INTEGER,
             //allowNull: false
         }
 
