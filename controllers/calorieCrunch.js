@@ -47,10 +47,10 @@ router.post("/signup", function(req, res) {
     let totalCal=1200;
     if(req.body.gender==="Male")
     {
-        totalCal=10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * 9 + 5
+        totalCal=10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * (req.body.age) + 5
     }else
     {
-       totalCal= 10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * 9 - 161.
+       totalCal= 10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * (req.body.age) - 161.
     }
     let user = {
         name: req.body.name,

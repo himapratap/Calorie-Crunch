@@ -27,31 +27,63 @@
         <div class="inner">
             <header class="major">
                 <h2>Welcome, {{name}}!</h2>
-                <p>You ate, you worked out, you crunched!
+                <p>You ate, you worked out, you crunched calories!
                     <br>Tell us about it.</p>
             </header>
             <ul class="features">
                 <li class="icon fa-plus">
                     <h3>Add Food</h3>
+                    <ul class="icons major">
+                        <span class="icon fa-microphone major style1" id="button" onclick="Playsound()"></span> &nbsp&nbsp&nbsp&nbsp
+                        <span class="icon fa-microphone-slash major style1" id="stop"></span>
+                    </ul>
+                    <br>
                     <form method="post" action="/addFood">
                         <div class="row uniform">
-                          <input type="hidden" name="userId" id="demo-name" value="{{id}}" placeholder="Name">
-
+                            <input type="hidden" name="userId" id="demo-name" value="{{id}}" placeholder="Name">
                             <div class="12u 12u$(xsmall)">
-                                <input type="text" name="food" id="demo-name" value="" placeholder="Food" />
+                                <input type="text" name="food" id="items" value="" placeholder="Food" />
                             </div>
                             <div class="12u 12u$(xsmall)">
                                 <input type="text" name="quantity" id="demo-name" value="" placeholder="Quantity" />
                             </div>
                             <div class="12u$">
                                 <ul class="actions">
-                                    <li>
-                                        <input type="submit" value="Add" class="special" />
-                                    </li>
+                                    <input type="submit" value="Add" class="special" />
                                 </ul>
                             </div>
                         </div>
                     </form>
+                    {{!-- Watson Code --}}
+                    <script src="assets/js/watson-speech.js"></script>
+                    <script src="assets/js/fetch.js"></script>
+                    <script>
+                    document.querySelector('#button').onclick = function () {
+
+                          fetch('/api/speech-to-text/token')
+                          .then(function(response) {
+                              return response.text();
+                          }).then(function (token) {
+
+                            var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+                                token: token,
+                                outputElement: '#items'
+                            });
+
+                            stream.on('error', function(err) {
+                                console.log(err);
+                            });
+
+                            document.querySelector('#stop').onclick = function() {
+                              stream.stop();
+                            };
+
+                          }).catch(function(error) {
+                              console.log(error);
+                          });
+                        };
+                    </script>
+                    {{!-- Div for Nutrition Facts --}}
                     <div>
                         <h3>Nutrition Facts</h3>
                         <table>
@@ -117,7 +149,7 @@
                                     <td>{{food}}</td>
                                     <td>{{calorieList}}</td>
                                 </tr>
-                                 <tr>
+                                <tr>
                                     <td>6:00 am (Example)</td>
                                     <td>Oatmeal (Example)</td>
                                     <td>500 (Example)</td>
@@ -132,7 +164,7 @@
                         </table>
                     </div>
                 </li>
-<!--                     <li class="icon fa-code">
+                <!--                     <li class="icon fa-code">
                     <h3>Mus Scelerisque</h3>
                     <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
                 </li>
@@ -151,17 +183,14 @@
             </ul>
         </div>
     </section>
-
-		<section id="one" class="wrapper style1 special">
+    <section id="one" class="wrapper style1 special">
         <div class="inner">
             <header class="major">
                 <h2>History</h2>
                 <p>The graph will go here!</p>
             </header>
-
         </div>
     </section>
-
     <!-- Footer -->
     <footer id="footer">
         <ul class="icons">
