@@ -38,10 +38,10 @@ module.exports = function(sequelize, DataTypes) {
             //allowNull: false
         },
 
-        // age:{
-        //     type: DataTypes.INTEGER,
-        //     //allowNull: false
-        // },
+        age:{
+            type: DataTypes.INTEGER,
+            //allowNull: false
+        },
         totalCalories:{
             type: DataTypes.INTEGER,
             //allowNull: false
