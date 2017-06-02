@@ -3812,8 +3812,20 @@
 	body.is-mobile.landing #footer {
 		background-color: #1d242a;
 	}
+
+
+	/********************************************Progress Bar***************************************************/
 #progressBar {
-	margin: 20px;
-	width: 400px;
+
 	height: 18px;
+	position: relative;
+	text-align: left;
+	overflow: hidden;
+
+}
+/************************************************High Charts****************************************************/
+#graphy {
+	min-width: 310px;
+	height: 400px;
+	margin: 0 auto
 }
