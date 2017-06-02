@@ -97,7 +97,7 @@ router.post("/searchfood", function(req, res) {
                 return x.fields;
             })
             console.log('Retrieved items after searching!');
-            res.render('index', {'items' :items});
+            res.render(req.body.page, {'items' :items});
         }
     });
 
