@@ -11,11 +11,6 @@
                         <ul>
                             <li><a href="/">Home</a></li>
                             <li><a href="/logout">LogOff</a></li>
-
-                            <!-- <li><a href="generic.html">Generic</a></li> -->
-                            <!-- <li><a href="elements.html">Elements</a></li> -->
-                            <!-- <li><a href="#">Sign Up</a></li> -->
-                            <!-- <li><a href="#">Log In</a></li> -->
                         </ul>
                     </div>
                 </li>
@@ -30,7 +25,8 @@
                 <p>You ate, you worked out, you crunched calories!
                     <br>Tell us about it.</p>
             </header>
-            <ul class="features">
+            {{!-- Left Section --}}
+            <ul class="features" id="dosearch">
                 <li class="icon fa-plus">
                     <h3>Add Food</h3>
                     <ul class="icons major">
@@ -38,18 +34,16 @@
                         <span class="icon fa-microphone-slash major style1" id="stop"></span>
                     </ul>
                     <br>
-                    <form method="post" action="/addFood">
+                    <form method="post" action="/searchfood">
+                        <input type="hidden" name="page" value="user">
                         <div class="row uniform">
-                            <input type="hidden" name="userId" id="demo-name" value="{{id}}" placeholder="Name">
                             <div class="12u 12u$(xsmall)">
-                                <input type="text" name="food" id="items" value="" placeholder="Food" />
-                            </div>
-                            <div class="12u 12u$(xsmall)">
-                                <input type="text" name="quantity" id="demo-name" value="" placeholder="Quantity" />
+                                <input type="text" name="foodsearch" value="" id="item" placeholder="ie. Avocado" />
                             </div>
                             <div class="12u$">
                                 <ul class="actions">
-                                    <input type="submit" value="Add" class="special" />
+                                    <input type="submit" value="Search" class="special" id="submitfood" />
+                                    <input type="reset" value="Reset" />
                                 </ul>
                             </div>
                         </div>
@@ -58,83 +52,100 @@
                     <script src="assets/js/watson-speech.js"></script>
                     <script src="assets/js/fetch.js"></script>
                     <script>
-                    document.querySelector('#button').onclick = function () {
+                    document.querySelector('#button').onclick = function() {
 
-                          fetch('/api/speech-to-text/token')
-                          .then(function(response) {
-                              return response.text();
-                          }).then(function (token) {
+                        fetch('/api/speech-to-text/token')
+                            .then(function(response) {
+                                return response.text();
+                            }).then(function(token) {
 
-                            var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-                                token: token,
-                                outputElement: '#items'
+                                var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+                                    token: token,
+                                    outputElement: '#item'
+                                });
+
+                                stream.on('error', function(err) {
+                                    console.log(err);
+                                });
+
+                                document.querySelector('#stop').onclick = function() {
+                                    stream.stop();
+                                };
+
+                            }).catch(function(error) {
+                                console.log(error);
                             });
-
-                            stream.on('error', function(err) {
-                                console.log(err);
-                            });
-
-                            document.querySelector('#stop').onclick = function() {
-                              stream.stop();
-                            };
-
-                          }).catch(function(error) {
-                              console.log(error);
-                          });
-                        };
+                    };
                     </script>
                     {{!-- Div for Nutrition Facts --}}
-
                     <div>
-                        <h3>Nutrition Facts</h3>
+                        {{#each items}}
+                        <button class="foodItem button special fit" data-calories={ {this.nf_calories}} data-serving-size={ {this.nf_serving_size_qty}} data-total-fat={ {this.nf_total_fat}} data-protein={ {this.nf_protein}} data-carb={ {this.nf_total_carbohydrate}} data-sugars={ {this.nf_sugars}} data-fiber={{this.nf_dietary_fiber}} data-sodium={ {this.nf_sodium}}>{{this.item_name}}
+                        </button>
+                        {{/each}}
+                    </div>
+                    <div>
+                        <br>
+                        <form method="post" action="">
+                            <input type="hidden" name="page" value="user">
+                            <div class="row uniform">
+                                <div class="6u 6u$(xsmall)">
+                                    <ul class="actions">
+                                        <input type="text" name="name" id="demo-name" value="" placeholder="Quantity" />
+                                    </ul>
+                                </div>
+                                <div class="6u 6u$(xsmall)">
+                                    <ul class="actions">
+                                        <input type="submit" value="Add" class="" id="" />
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <h2>Nutrition Facts</h2>
                         <table>
                             <thead>
-                                <!--                                     <tr>
-                                    <th>Name</th>
-                                    <th>Content</th>
-                                </tr> -->
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Serving Size:</td>
-                                    <td>{{serving}}</td>
+                                    <td id="servingSize"></td>
                                 </tr>
                                 <tr>
                                     <td>Calories:</td>
-                                    <td>{{calorie}}</td>
+                                    <td id="calories"></td>
                                 </tr>
                                 <tr>
-                                    <td>Calories from Fat:</td>
-                                    <td>{{caloriefat}}</td>
+                                    <td>Fiber </td>
+                                    <td id="fiber"></td>
                                 </tr>
                                 <tr>
                                     <td>Total Fat:</td>
-                                    <td>{{totalfat}}</td>
-                                </tr>
-                                <tr>
-                                    <td>Cholesterol:</td>
-                                    <td>{{cholesterol}}</td>
+                                    <td id="totalFat"> </td>
                                 </tr>
                                 <tr>
                                     <td>Sodium:</td>
-                                    <td>{{sodium}}</td>
+                                    <td id="sodium"></td>
                                 </tr>
                                 <tr>
                                     <td>Total Carbohydrates:</td>
-                                    <td>{{carb}}</td>
+                                    <td id="carb"> </td>
                                 </tr>
                                 <tr>
                                     <td>Protein:</td>
-                                    <td>{{protein}}</td>
+                                    <td id="protein"></td>
                                 </tr>
                             </tbody>
                         </table>
+                        <br>
+                        <a href="#dosearch" class="more scrolly button fit" style="text-decoration: none;">Do Another Search!</a>
                     </div>
                 </li>
                 <li class="icon fa-laptop">
                     <h3>Date: May, 26, 2017<br>Time: 5:30pm</h3>
                     <p id="totalCalories">{{totalCalories}}</p>
-                    <!-- <h4>Calories Consumed: 750	<br>Total Calories left: 1500</h4> -->
+                    <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>
                     <div class="table-wrapper">
                         <table>
@@ -166,111 +177,16 @@
                         </table>
                     </div>
                 </li>
-                <!--                     <li class="icon fa-code">
-                    <h3>Mus Scelerisque</h3>
-                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                </li>
-                <li class="icon fa-headphones">
-                    <h3>Mauris Imperdiet</h3>
-                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                </li>
-                <li class="icon fa-heart-o">
-                    <h3>Aenean Primis</h3>
-                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                </li>
-                <li class="icon fa-flag-o">
-                    <h3>Tortor Ut</h3>
-                    <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                </li> -->
             </ul>
         </div>
     </section>
-    <section id="one" class="wrapper style1 special">
-    <form method="post" action="/searchfood">
-    <input type="hidden" name="page" value="user">
-                    <div class="row uniform">
-                        <div class="12u 12u$(xsmall)">
-                            <input type="text" name="foodsearch" value="" id="item" placeholder="ie. One big mac" />
-                        </div>
-                        <div class="12u$">
-                            <ul class="actions">
-                                <li>
-                                    <input type="submit" value="Submit" class="special" id="submitfood" />
-                                </li>
-                                <li>
-                                    <input type="reset" value="Reset" />
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </form>
-        <div class="inner">
-            {{!-- <header class="major">
-                <h2>History</h2>
-                <p>The graph will go here!</p>
-            </header> --}}
-            <section class="spotlight">
-                <ul>
-                    {{#each items}}
-                        <li><button class="foodItem" data-calories= {{this.nf_calories}} data-serving-size= {{this.nf_serving_size_qty}} data-total-fat= {{this.nf_total_fat}} data-protein= {{this.nf_protein}} data-carb= {{this.nf_total_carbohydrate}} data-sugars= {{this.nf_sugars}}
-                              data-fiber={{this.nf_dietary_fiber}}  data-sodium= {{this.nf_sodium}}>{{this.item_name}}</button></li>
-                    {{/each}}
-                </ul>
-                <div class="content">
-                    <h2>{{name}}<br/></h2>
-                    <table>
-                        <thead>
-                            <!--<tr>
-                                    <th>Name</th>
-                                    <th>Content</th>
-                                </tr> -->
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Serving Size:</td>
-                                <td id="servingSize"></td>
-                            </tr>
-                            <tr>
-                                <td>Calories:</td>
-                                <td id="calories"></td>
-                            </tr>
-                            <tr>
-                                <td>Fiber </td>
-                                <td id="fiber"></td>
-                            </tr>
-                            <tr>
-                                <td>Total Fat:</td>
-                                <td id="totalFat"> </td>
-                            </tr>
-                            <tr>
-                                <td>Sodium:</td>
-                                <td id="sodium"></td>
-                            </tr>
-                            <tr>
-                                <td>Total Carbohydrates:</td>
-                                <td id="carb"> </td>
-                            </tr>
-                            <tr>
-                                <td>Protein:</td>
-                                <td id="protein"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </section>
-        </div>
-    </section>
+    {{!-- Graph Div? --}}
+    <div class="graphy">
+    </div>
     <!-- Footer -->
     <footer id="footer">
-        <ul class="icons">
-            <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-            <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-            <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-            <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-            <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-        </ul>
         <ul class="copyright">
-            <li>&copy; Rutgers Coding Project 2</li>
+            <li>&copy; Calorie Crunchers Inc</li>
         </ul>
     </footer>
 </div>
@@ -284,3 +200,5 @@
 <script src="assets/js/util.js"></script>
 <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script src="assets/js/main.js"></script>
+<script src="assets/js/dataVisualization.js"></script>
+<script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.5.6/dist/progressbar.js"></script>
