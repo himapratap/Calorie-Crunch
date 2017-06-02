@@ -53,7 +53,7 @@ Highcharts.chart('graphy', {
         backgroundColor: '#505393',
         polar: true,
         type: 'line',
-        width: 800,
+        width: 500,
 
 
     },
