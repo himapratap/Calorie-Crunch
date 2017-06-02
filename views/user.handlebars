@@ -84,6 +84,7 @@
                         };
                     </script>
                     {{!-- Div for Nutrition Facts --}}
+
                     <div>
                         <h3>Nutrition Facts</h3>
                         <table>
@@ -184,11 +185,78 @@
         </div>
     </section>
     <section id="one" class="wrapper style1 special">
+    <form method="post" action="/searchfood">
+    <input type="hidden" name="page" value="user">
+                    <div class="row uniform">
+                        <div class="12u 12u$(xsmall)">
+                            <input type="text" name="foodsearch" value="" id="item" placeholder="ie. One big mac" />
+                        </div>
+                        <div class="12u$">
+                            <ul class="actions">
+                                <li>
+                                    <input type="submit" value="Submit" class="special" id="submitfood" />
+                                </li>
+                                <li>
+                                    <input type="reset" value="Reset" />
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </form>
         <div class="inner">
-            <header class="major">
+            {{!-- <header class="major">
                 <h2>History</h2>
                 <p>The graph will go here!</p>
-            </header>
+            </header> --}}
+            <section class="spotlight">
+                <ul>
+                    {{#each items}}
+                        <li><button class="foodItem" data-calories= {{this.nf_calories}} data-serving-size= {{this.nf_serving_size_qty}} data-total-fat= {{this.nf_total_fat}} data-protein= {{this.nf_protein}} data-carb= {{this.nf_total_carbohydrate}} data-sugars= {{this.nf_sugars}}
+                              data-fiber={{this.nf_dietary_fiber}}  data-sodium= {{this.nf_sodium}}>{{this.item_name}}</button></li>
+                    {{/each}}
+                </ul>
+                <div class="content">
+                    <h2>{{name}}<br/></h2>
+                    <table>
+                        <thead>
+                            <!--<tr>
+                                    <th>Name</th>
+                                    <th>Content</th>
+                                </tr> -->
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Serving Size:</td>
+                                <td id="servingSize"></td>
+                            </tr>
+                            <tr>
+                                <td>Calories:</td>
+                                <td id="calories"></td>
+                            </tr>
+                            <tr>
+                                <td>Fiber </td>
+                                <td id="fiber"></td>
+                            </tr>
+                            <tr>
+                                <td>Total Fat:</td>
+                                <td id="totalFat"> </td>
+                            </tr>
+                            <tr>
+                                <td>Sodium:</td>
+                                <td id="sodium"></td>
+                            </tr>
+                            <tr>
+                                <td>Total Carbohydrates:</td>
+                                <td id="carb"> </td>
+                            </tr>
+                            <tr>
+                                <td>Protein:</td>
+                                <td id="protein"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
         </div>
     </section>
     <!-- Footer -->
