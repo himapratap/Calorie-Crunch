@@ -47,10 +47,10 @@ router.post("/signup", function(req, res) {
     let totalCal=1200;
     if(req.body.gender==="Male")
     {
-        totalCal=10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * (req.body.age) + 5
+        totalCal=10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * 9 + 5
     }else
     {
-       totalCal= 10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * (req.body.age) - 161.
+       totalCal= 10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * 9 - 161.
     }
     let user = {
         name: req.body.name,
@@ -80,10 +80,7 @@ router.post("/signup", function(req, res) {
 
 
 router.post("/searchfood", function(req, res) {
-
-
     let item = req.body.foodsearch;
-
     let appID = "48e9aea9";
     let appKey = "3cfd31e974a75dc9c2b9cc64a1b40dd6";
     let url = "https://api.nutritionix.com/v1_1/search/" + item + "?results=0:10&fields=item_name,nf_servings_per_container,nf_cholestorol,nf_saturated_fat,nf_sodium,nf_total_carbohydrate,nf_dietary_fiber,nf_sugars,nf_protein,nf_serving_size_qty,nf_total_fat,brand_name,item_id,nf_calories&appId=" + appID + "&appKey=" + appKey;
