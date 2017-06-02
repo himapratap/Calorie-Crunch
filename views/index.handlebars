@@ -3,7 +3,7 @@
     <div id="page-wrapper">
         <!-- Header -->
         <header id="header" class="alt">
-            <h1><a href="index.html">Calorie Crunch</a></h1>
+            <h1><a href="/">Calorie Crunch</a></h1>
             <nav id="nav">
                 <ul>
                     <li class="special">
@@ -53,6 +53,7 @@
                 </ul>
 
                 <form method="post" action="/searchfood">
+                <input type="hidden" name="page" value="index">
                     <div class="row uniform">
                         <div class="12u 12u$(xsmall)">
                             <input type="text" name="foodsearch" value="" id="item" placeholder="ie. One big mac" />
