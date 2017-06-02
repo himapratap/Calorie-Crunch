@@ -49,11 +49,21 @@
 // Graph
 
 Highcharts.chart('graphy', {
+    chart: {
+        backgroundColor: '#505393',
+        polar: true,
+        type: 'line',
+        width: 800,
+
+
+    },
     title: {
-        text: '7 Day Calorie History'
+        text: '7 Day Calorie History',
+        color:'#ffffff',
     },
     xAxis: {
-        categories: ['-6 days', '-5', '-4', '-3','-2','-1' ,'Current']
+        categories: ['-6 days', '-5', '-4', '-3','-2','-1' ,'Current'],
+        color:'#ffffff',
     },
     labels: {
 
@@ -62,11 +72,13 @@ Highcharts.chart('graphy', {
 
         type: 'column',
         name: 'Calories Eaten',
-        data: [1400, 1419, 1650, 1419, 1500, 1419, 1300]
+        data: [1400, 1419, 1650, 1419, 1500, 1419, 1300],
+        color:'#21b2a6',
     }, {
         type: 'spline',
         name: 'Target Calorie',
         data: [1419, 1419, 1419,1419, 1419, 1419, 1319],
+        color:'#ed4933',
         marker: {
             lineWidth: 2,
             lineColor: Highcharts.getOptions().colors[3],
