@@ -143,7 +143,7 @@
                     </div>
                 </li>
                 <li class="icon fa-laptop">
-                    <h3>Date: May, 26, 2017<br>Time: 5:30pm</h3>
+                    <h3 id="currentDate">Date: May, 26, 2017<br>Time: 5:30pm</h3>
                     <p id="totalCalories">{{totalCalories}}</p>
                     <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>
@@ -181,7 +181,7 @@
         </div>
     </section>
     {{!-- Graph Div? --}}
-    <div class="graphy">
+    <div id="graphy">
     </div>
     <!-- Footer -->
     <footer id="footer">
@@ -191,6 +191,8 @@
     </footer>
 </div>
 <!-- Scripts -->
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.5.6/dist/progressbar.js"></script>
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/dataVisualization.js"></script>
@@ -198,7 +200,8 @@
 <script src="assets/js/jquery.scrolly.min.js"></script>
 <script src="assets/js/skel.min.js"></script>
 <script src="assets/js/util.js"></script>
+
 <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script src="assets/js/main.js"></script>
-<script src="assets/js/dataVisualization.js"></script>
-<script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.5.6/dist/progressbar.js"></script>
+
+
