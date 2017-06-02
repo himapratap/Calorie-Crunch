@@ -1,6 +1,20 @@
 <body class="landing">
     <!-- Page Wrapper -->
-    <div id="page-wrapper">
+    <div id="page-wrapper" class="fade">
+        
+        {{!-- If user hits search food route, auto scroll to search results div --}}
+        {{#if showTitle}}
+        <script type="text/javascript">
+        window.onload = function() {
+            
+            var el = document.getElementById("two");
+            el.scrollIntoView(true);
+            $(".fade").hide(0).fadeIn(500)
+        }
+        element.scrollIntoView();
+        </script>
+        {{/if}}
+
         <!-- Header -->
         <header id="header" class="alt">
             <h1><a href="/">Calorie Crunch</a></h1>
@@ -11,11 +25,8 @@
                         <div id="menu">
                             <ul>
                                 <li><a href="/">Home</a></li>
+                                <li><a href="/login">Log In</a></li>
                                 <li><a href="/signup">Sign Up</a></li>
-                                <li><a href="user.html">User Profile Example</a></li>
-                                <!-- <li><a href="elements.html">Elements</a></li> -->
-                                <!-- <li><a href="#">Sign Up</a></li> -->
-                                <!-- <li><a href="#">Log In</a></li> -->
                             </ul>
                         </div>
                     </li>
@@ -35,7 +46,7 @@
                     <li><a href="/signup" class="button special signUp">Sign Up</a></li>
                 </ul>
             </div>
-            <a href="#one" class="more scrolly">Calculate Calories</a>
+            <a href="#one" class="more scrolly" style="text-decoration: none;">Calculate Calories</a>
         </section>
         <!-- One -->
         <section id="one" class="wrapper style1 special">
@@ -43,7 +54,7 @@
                 <header class="major">
                     <h2>Calorie Calculator</h2>
                     <p>Tell us what you're eating!
-                        <br /> Touch the microphone to speak. (ie. "One big mac")</p>
+                        <br/> Touch the microphone to speak. (ie. "An apple")</p>
                 </header>
                 <ul class="icons major">
                     <li><span class="icon fa-microphone major style1" id="button"><span class="label">Lorem</span></span>
@@ -51,12 +62,11 @@
                     <li><span class="icon fa-microphone-slash major style1" id="stop"><span class="label">Lorem</span></span>
                     </li>
                 </ul>
-
                 <form method="post" action="/searchfood">
-                <input type="hidden" name="page" value="index">
+                    <input type="hidden" name="page" value="index">
                     <div class="row uniform">
                         <div class="12u 12u$(xsmall)">
-                            <input type="text" name="foodsearch" value="" id="item" placeholder="ie. One big mac" />
+                            <input type="text" name="foodsearch" value="" id="item" placeholder="ie. An apple" />
                         </div>
                         <div class="12u$">
                             <ul class="actions">
@@ -70,20 +80,18 @@
                         </div>
                     </div>
                 </form>
-
-
             </div>
         </section>
         {{!-- Watson Code --}}
         <script src="assets/js/watson-speech.js"></script>
         <script src="assets/js/fetch.js"></script>
         <script>
-            document.querySelector('#button').onclick = function () {
+        document.querySelector('#button').onclick = function() {
 
-                  fetch('/api/speech-to-text/token')
-                  .then(function(response) {
-                      return response.text();
-                  }).then(function (token) {
+            fetch('/api/speech-to-text/token')
+                .then(function(response) {
+                    return response.text();
+                }).then(function(token) {
 
                     var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
                         token: token,
@@ -95,153 +103,97 @@
                     });
 
                     document.querySelector('#stop').onclick = function() {
-                      stream.stop();
+                        stream.stop();
                     };
 
-                  }).catch(function(error) {
-                      console.log(error);
-                  });
-                };
+                }).catch(function(error) {
+                    console.log(error);
+                });
+        };
         </script>
-        <!-- Two -->
-        <section id="two" class="wrapper alt style2">
-            <section class="spotlight">
-                <ul>
-                    {{#each items}}
-                        <li><button class="foodItem" data-calories= {{this.nf_calories}} data-serving-size= {{this.nf_serving_size_qty}} data-total-fat= {{this.nf_total_fat}} data-protein= {{this.nf_protein}} data-carb= {{this.nf_total_carbohydrate}} data-sugars= {{this.nf_sugars}}
-                              data-fiber={{this.nf_dietary_fiber}}  data-sodium= {{this.nf_sodium}}>{{this.item_name}}</button></li>
-                    {{/each}}
-                </ul>
-                <div class="content">
-                    <h2>{{name}}<br/></h2>
-                    <table>
-                        <thead>
-                            <!--<tr>
+
+        {{!-- Two --}}
+        <section class="wrapper alt style2" id="two">
+            <div class="inner">
+                <div class="row">
+                    <br><br>
+                    <div class="6u 12u$(small)">
+                        <h2>Search Results</h2>
+                       {{!--  <ul> --}}
+                            {{#each items}}
+                            <button class="foodItem button special fit" data-calories= {{this.nf_calories}} data-serving-size= {{this.nf_serving_size_qty}} data-total-fat= {{this.nf_total_fat}} data-protein= {{this.nf_protein}} data-carb= {{this.nf_total_carbohydrate}} data-sugars= {{this.nf_sugars}}
+                              data-fiber={{this.nf_dietary_fiber}}  data-sodium= {{this.nf_sodium}}>{{this.item_name}}</button>
+                            {{/each}}
+                        {{!-- </ul> --}}
+                    </div>
+                    <div class="6u 12u$(small)">
+                        {{!--
+                        <h2>{{name}}<br/></h2> --}}
+                        <h2>Nutrition Facts</h2>
+                        <table>
+                            <thead>
+                                <!--<tr>
                                     <th>Name</th>
                                     <th>Content</th>
                                 </tr> -->
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Serving Size:</td>
-                                <td id="servingSize"></td>
-                            </tr>
-                            <tr>
-                                <td>Calories:</td>
-                                <td id="calories"></td>
-                            </tr>
-                            <tr>
-                                <td>Fiber </td>
-                                <td id="fiber"></td>
-                            </tr>
-                            <tr>
-                                <td>Total Fat:</td>
-                                <td id="totalFat"> </td>
-                            </tr>
-                            <tr>
-                                <td>Sodium:</td>
-                                <td id="sodium"></td>
-                            </tr>
-                            <tr>
-                                <td>Total Carbohydrates:</td>
-                                <td id="carb"> </td>
-                            </tr>
-                            <tr>
-                                <td>Protein:</td>
-                                <td id="protein"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Serving Size:</td>
+                                    <td id="servingSize"></td>
+                                </tr>
+                                <tr>
+                                    <td>Calories:</td>
+                                    <td id="calories"></td>
+                                </tr>
+                                <tr>
+                                    <td>Fiber </td>
+                                    <td id="fiber"></td>
+                                </tr>
+                                <tr>
+                                    <td>Total Fat:</td>
+                                    <td id="totalFat"> </td>
+                                </tr>
+                                <tr>
+                                    <td>Sodium:</td>
+                                    <td id="sodium"></td>
+                                </tr>
+                                <tr>
+                                    <td>Total Carbohydrates:</td>
+                                    <td id="carb"> </td>
+                                </tr>
+                                <tr>
+                                    <td>Protein:</td>
+                                    <td id="protein"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <a href="#one" class="more scrolly button fit" style="text-decoration: none;">Do Another Search!</a>
+                    </div>
                 </div>
-            </section>
-            <!-- <section class="spotlight">
-                <div class="image"><img src="images/pic02.jpg" alt="" /></div>
-                <div class="content">
-                    <h2>Tortor dolore feugiat<br />
-                                elementum magna</h2>
-                    <p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
-                </div>
-            </section>
-            <section class="spotlight">
-                <div class="image"><img src="images/pic03.jpg" alt="" /></div>
-                <div class="content">
-                    <h2>Augue eleifend aliquet<br />
-                                sed condimentum</h2>
-                    <p>Aliquam ut ex ut augue consectetur interdum. Donec hendrerit imperdiet. Mauris eleifend fringilla nullam aenean mi ligula.</p>
-                </div>
-            </section> -->
+            </div>
         </section>
-        <!-- Three -->
-        <!-- <section id="three" class="wrapper style3 special">
-            <div class="inner">
-                <header class="major">
-                    <h2>Accumsan mus tortor nunc aliquet</h2>
-                    <p>Aliquam ut ex ut augue consectetur interdum. Donec amet imperdiet eleifend
-                        <br /> fringilla tincidunt. Nullam dui leo Aenean mi ligula, rhoncus ullamcorper.</p>
-                </header>
-                <ul class="features">
-                    <li class="icon fa-paper-plane-o">
-                        <h3>Arcu accumsan</h3>
-                        <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                    </li>
-                    <li class="icon fa-laptop">
-                        <h3>Ac Augue Eget</h3>
-                        <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                    </li>
-                    <li class="icon fa-code">
-                        <h3>Mus Scelerisque</h3>
-                        <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                    </li>
-                    <li class="icon fa-headphones">
-                        <h3>Mauris Imperdiet</h3>
-                        <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                    </li>
-                    <li class="icon fa-heart-o">
-                        <h3>Aenean Primis</h3>
-                        <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                    </li>
-                    <li class="icon fa-flag-o">
-                        <h3>Tortor Ut</h3>
-                        <p>Augue consectetur sed interdum imperdiet et ipsum. Mauris lorem tincidunt nullam amet leo Aenean ligula consequat consequat.</p>
-                    </li>
-                </ul>
-            </div>
-        </section> -->
-        <!-- CTA -->
-        <!-- <section id="cta" class="wrapper style4">
-            <div class="inner">
-                <header>
-                    <h2>Arcue ut vel commodo</h2>
-                    <p>Aliquam ut ex ut augue consectetur interdum endrerit imperdiet amet eleifend fringilla.</p>
-                </header>
-                <ul class="actions vertical">
-                    <li><a href="#" class="button fit special">Activate</a></li>
-                    <li><a href="#" class="button fit">Learn More</a></li>
-                </ul>
-            </div>
-        </section> -->
         <!-- Footer -->
         <footer id="footer">
-            <ul class="icons">
+{{!--             <ul class="icons">
                 <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
                 <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
                 <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
                 <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
                 <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-            </ul>
+            </ul> --}}
             <ul class="copyright">
-                <li>&copy; Rutgers Project #2</li>
+                <li>&copy; Calorie Crunchers Inc.</li>
             </ul>
         </footer>
     </div>
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
-
     <script src="assets/js/jquery.scrollex.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
     <script src="assets/js/skel.min.js"></script>
     <script src="assets/js/util.js"></script>
     <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
     <script src="assets/js/main.js"></script>
-
 </body>
