@@ -12,8 +12,8 @@
         trailWidth: 1,
         svgStyle: {width: '100%', height: '100%'},
 
-        from: {color: '#FF8C00'},
-        to: {color: '#228B22'},
+        from: {color: '#00ffcc'},
+        to: {color: '#00ffcc'},
         step: (state, bar) => {
             bar.path.setAttribute('stroke', state.color);
 
