@@ -21,7 +21,7 @@
     <section id="three" class="wrapper style3 special">
         <div class="inner">
             <header class="major">
-                <h2>Welcome, {{name}}!</h2>
+                <h2>Welcome, {{userProfile.user.name}}!</h2>
                 <p>You ate, you worked out, you crunched calories!
                     <br>Tell us about it.</p>
             </header>
@@ -53,46 +53,59 @@
                     <script src="assets/js/watson-speech.js"></script>
                     <script src="assets/js/fetch.js"></script>
                     <script>
-                    document.querySelector('#button').onclick = function() {
+                        document.querySelector('#button').onclick = function() {
 
-                        fetch('/api/speech-to-text/token')
-                            .then(function(response) {
-                                return response.text();
-                            }).then(function(token) {
+                            fetch('/api/speech-to-text/token')
+                                .then(function(response) {
+                                    return response.text();
+                                }).then(function(token) {
 
-                                var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-                                    token: token,
-                                    outputElement: '#item'
+                                    var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+                                        token: token,
+                                        outputElement: '#item'
+                                    });
+
+                                    stream.on('error', function(err) {
+                                        console.log(err);
+                                    });
+
+                                    document.querySelector('#stop').onclick = function() {
+                                        stream.stop();
+                                    };
+
+                                }).catch(function(error) {
+                                    console.log(error);
                                 });
-
-                                stream.on('error', function(err) {
-                                    console.log(err);
-                                });
-
-                                document.querySelector('#stop').onclick = function() {
-                                    stream.stop();
-                                };
-
-                            }).catch(function(error) {
-                                console.log(error);
-                            });
-                    };
+                        };
                     </script>
                     {{!-- Div for Nutrition Facts --}}
                     <div>
-                        {{#each items}}
-                        <button class="foodItem button special fit" data-calories={ {this.nf_calories}} data-serving-size={ {this.nf_serving_size_qty}} data-total-fat={ {this.nf_total_fat}} data-protein={ {this.nf_protein}} data-carb={ {this.nf_total_carbohydrate}} data-sugars={ {this.nf_sugars}} data-fiber={{this.nf_dietary_fiber}} data-sodium={ {this.nf_sodium}}>{{this.item_name}}
+                        <!-- {{#each items}}
+                        <button class="foodItem button special fit" data-calories={{this.nf_calories}} data-serving-size={{this.nf_serving_size_qty}} data-total-fat={{this.nf_total_fat}} data-protein={{this.nf_protein}} data-carb={{this.nf_total_carbohydrate}} data-sugars={{this.nf_sugars}} data-fiber={{this.nf_dietary_fiber}} data-sodium={{this.nf_sodium}}>{{this.item_name}}
                         </button>
+                        {{/each}} -->
+
+                        <select class="selectfoodItem">
+                        <option value="">- Please select the food- </i></option>
+                        {{#each items}}
+
+                          <option class="" data-calories={{this.nf_calories}} data-serving-size={{this.nf_serving_size_qty}} data-total-fat={{this.nf_total_fat}} data-protein={{this.nf_protein}} data-carb={{this.nf_total_carbohydrate}} data-sugars={{this.nf_sugars}} data-fiber={{this.nf_dietary_fiber}} data-sodium={{this.nf_sodium}}>{{this.item_name}}
+                          </option>
                         {{/each}}
+                        </select>
                     </div>
                     <div>
                         <br>
-                        <form method="post" action="">
+                        <form method="post" action="/addFood">
                             <input type="hidden" name="page" value="user">
+                            <input type="hidden" name="calories" id="finalCalories"></input>
+                            <input type="hidden" name="food" id="selectedFood"></input>
+                            <input type="hidden" name="userId" value="{{id}}" placeholder="Name">
+
                             <div class="row uniform">
                                 <div class="6u 6u$(xsmall)">
                                     <ul class="actions">
-                                        <input type="text" name="name" id="demo-name" value="" placeholder="Quantity" />
+                                        <input type="text" name="quantity" value="" placeholder="Quantity" />
                                     </ul>
                                 </div>
                                 <div class="6u 6u$(xsmall)">
@@ -158,11 +171,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>{{time}}</td>
-                                    <td>{{food}}</td>
-                                    <td>{{calorieList}}</td>
-                                </tr>
+
+                                {{#each userProfile.entry}}
+                                    <tr>
+                                      <td>{{time}}</td>
+                                      <td>{{food}}</td>
+                                      <td>{{totalCalories}}</td>
+                                    </tr>
+                                {{/each}}
+
                                 <tr>
                                     <td>6:00 am (Example)</td>
                                     <td>Oatmeal (Example)</td>
@@ -172,7 +189,7 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td id="total">Total:{{total}}</td>
+                                    <td id="total">Total:{{userProfile.totalCal}}</td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -204,5 +221,3 @@
 
 <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script src="assets/js/main.js"></script>
-
-
