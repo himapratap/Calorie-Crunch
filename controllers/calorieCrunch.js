@@ -39,18 +39,41 @@ router.post("/verifyLogin", passport.authenticate("local", {
 }));
 
 router.get("/user", isAuthenticated, function(req, res) {
-    res.render("user", req.session.passport.user);
-});
+  db.Activity.findAll({
+      where: {
+          UserId: req.session.passport.user.id,
+          time: db.sequelize.literal('CURRENT_TIMESTAMP')
+      },
+
+      raw: true
+
+  }).then(function(results) {
+      console.log(results);
+      var totalCal = 0;
+      results.map((x) => {
+          totalCal += x.totalCalories
+      })
+
+      let userProfile = {
+          'entry': results,
+          'totalCal': totalCal,
+          'user'  :  req.session.passport.user
+      }
+      console.log("userProfile", userProfile);
+      res.render("user", {
+          'userProfile': userProfile
+      });
+
+  });
+ });
 
 router.post("/signup", function(req, res) {
     console.log(`Starting signup process : }`);
-    let totalCal=1200;
-    if(req.body.gender==="Male")
-    {
-        totalCal=10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * 9 + 5
-    }else
-    {
-       totalCal= 10 * (req.body.weight*0.453592)+ 6.25 * (req.body.height *2.54) - 5 * 9 - 161.
+    let totalCal = 1200;
+    if (req.body.gender === "Male") {
+        totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5
+    } else {
+        totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161.
     }
     let user = {
         name: req.body.name,
@@ -59,9 +82,9 @@ router.post("/signup", function(req, res) {
         height: req.body.height,
         weight: req.body.weight,
         gender: req.body.gender,
-        age : req.body.age,
+        age: req.body.age,
         activityLevel: req.body.activityLevel,
-        totalCalories:totalCal
+        totalCalories: totalCal
 
     };
     db.User.create(user, {
@@ -95,10 +118,10 @@ router.post("/searchfood", function(req, res) {
             })
             console.log('Retrieved items after searching!');
             // console.log(data)
-            console.log(items)
+            //      console.log(items)
             // res.render(req.body.page, {'items' :items});
             res.render(req.body.page, {
-                'items' :items,
+                'items': items,
                 showTitle: true
             });
         }
@@ -107,23 +130,32 @@ router.post("/searchfood", function(req, res) {
 });
 
 router.post("/addFood", (req, res) => {
+    console.log(req.session);
     console.log("adding food", req.body);
-    let food = {
+    let activity = {
         food: req.body.food,
         quantity: req.body.quantity,
         time: db.sequelize.literal('CURRENT_TIMESTAMP'),
-        UserId: req.body.userId
+        UserId: req.session.passport.user.id,
+        calories: req.body.calories
     };
+    console.log(activity);
 
-
-    db.Activity.create(food, {
+    db.Activity.create(activity, {
         raw: true
-    }).then(res.redirect("/user"))
+    }).then(function() {
+
+             res.redirect("/user");
+
+
+        }
+
+    );
 });
 
 /*Function to logout clearing the user from session*/
-router.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
+router.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
 });
 module.exports = router;
