@@ -12,8 +12,8 @@
         trailWidth: 1,
         svgStyle: {width: '100%', height: '100%'},
 
-        from: {color: '#FF8C00'},
-        to: {color: '#228B22'},
+        from: {color: '#00ffcc'},
+        to: {color: '#00ffcc'},
         step: (state, bar) => {
             bar.path.setAttribute('stroke', state.color);
 
@@ -53,17 +53,49 @@ Highcharts.chart('graphy', {
         backgroundColor: '#505393',
         polar: true,
         type: 'line',
-        width: 500,
-
+        // width: 500,
+        style: {
+            fontFamily: "Open Sans",
+        },
 
     },
     title: {
-        text: '7 Day Calorie History',
+        text: "",
         color:'#ffffff',
     },
     xAxis: {
         categories: ['-6 days', '-5', '-4', '-3','-2','-1' ,'Current'],
-        color:'#ffffff',
+        labels: {
+            style: {
+                color: "#ffffff",
+                font: "Open Sans"
+            }
+        },
+        title: {
+            style: {
+                color: "#ffffff",
+                fontSize: "12px",
+                fontWeight: "bold",
+                fontFamily: "Open Sans"
+            }
+        }
+    },
+    yAxis: {
+        labels: {
+            style: {
+                color: "#ffffff",
+                font: "fontAwesome"
+            }
+        },
+        title: {
+            text: "Calories",
+            style: {
+                color: "#ffffff",
+                fontSize: "12px",
+                // fontWeight: "bold",
+                fontFamily: "Open Sans"
+            }
+        }
     },
     labels: {
 

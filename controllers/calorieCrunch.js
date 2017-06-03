@@ -122,7 +122,8 @@ router.post("/searchfood", function(req, res) {
             // res.render(req.body.page, {'items' :items});
             res.render(req.body.page, {
                 'items': items,
-                showTitle: true
+                showTitle: true,
+                dosearch: true
             });
         }
     });
