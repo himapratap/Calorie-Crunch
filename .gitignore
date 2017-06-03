@@ -2,5 +2,4 @@
 node_modules/
 
 # Config JSON
-config/config.json
-
+#config/config.json
