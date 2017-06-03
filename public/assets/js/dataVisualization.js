@@ -53,21 +53,58 @@ Highcharts.chart('graphy', {
         backgroundColor: '#505393',
         polar: true,
         type: 'line',
-        width: 500,
+        width: 800,
 
 
     },
     title: {
         text: '7 Day Calorie History',
-        color:'#ffffff',
+        style: {
+            color: '#ffffff',
+            font: 'bold 16px "Trebuchet MS", Verdana, sans-serif'
+        }
+
     },
     xAxis: {
         categories: ['-6 days', '-5', '-4', '-3','-2','-1' ,'Current'],
         color:'#ffffff',
+        labels: {
+            style: {
+                color: '#ffffff',
+                font: '11px Trebuchet MS, Verdana, sans-serif'
+            }
+        },
+        title: {
+
+            style: {
+                color: '#ffffff',
+                fontWeight: 'bold',
+                fontSize: '12px',
+                fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+            }
+        }
+    },
+    yAxis: {
+        text: 'Calories',
+        labels: {
+            style: {
+                color: '#ffffff',
+                font: '11px Trebuchet MS, Verdana, sans-serif'
+            }
+        },
+        title: {
+            style: {
+                color: '#ffffff',
+                fontWeight: 'bold',
+                fontSize: '12px',
+                fontFamily: 'Trebuchet MS, Verdana, sans-serif'
+            }
+        }
     },
     labels: {
 
     },
+
     series: [{
 
         type: 'column',
@@ -76,7 +113,7 @@ Highcharts.chart('graphy', {
         color:'#21b2a6',
     }, {
         type: 'spline',
-        name: 'Target Calorie',
+        name: 'Target Calories',
         data: [1419, 1419, 1419,1419, 1419, 1419, 1319],
         color:'#ed4933',
         marker: {
