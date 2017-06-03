@@ -85,7 +85,7 @@ app.use('/api/text-to-speech/', require('./tts-token.js'));
 if (!process.env.VCAP_SERVICES) {
   const fs = require('fs');
   const https = require('https');
-  const HTTPS_PORT = 3001;
+  const HTTPS_PORT = process.env.PORT || 3001;
 
   const options = {
     key: fs.readFileSync(__dirname + '/keys/localhost.pem'),
