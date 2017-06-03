@@ -4,12 +4,12 @@ $(document).ready(function() {
     $(".foodItem").click(function() {
         $("#finalCalories").val($(this).data("calories"));
         $("#calories").html($(this).data("calories"));
-        $("#sodium").html($(this).data("sodium"));
-        $("#protein").html($(this).data("protein"));
-        $("#totalFat").html($(this).data("total-fat"));
+        $("#sodium").html($(this).data("sodium")+"mg");
+        $("#protein").html($(this).data("protein")+"g");
+        $("#totalFat").html($(this).data("total-fat")+"g");
         $("#servingSize").html($(this).data("serving-size"));
-        $("#carb").html($(this).data("carb"));
-        $("#fiber").html($(this).data("fiber"));
+        $("#carb").html($(this).data("carb")+"g");
+        $("#fiber").html($(this).data("fiber")+"g");
 
     });
 
@@ -19,12 +19,12 @@ $(document).ready(function() {
         $("#selectedFood").val(food.val());
 
         $("#calories").html(food.data("calories"));
-        $("#sodium").html(food.data("sodium"));
-        $("#protein").html(food.data("protein"));
-        $("#totalFat").html(food.data("total-fat"));
+        $("#sodium").html(food.data("sodium")+"mg");
+        $("#protein").html(food.data("protein")+"g");
+        $("#totalFat").html(food.data("total-fat")+"g");
         $("#servingSize").html(food.data("serving-size"));
-        $("#carb").html(food.data("carb"));
-        $("#fiber").html(food.data("fiber"));
+        $("#carb").html(food.data("carb")+"g");
+        $("#fiber").html(food.data("fiber")+"g");
 
 
     });

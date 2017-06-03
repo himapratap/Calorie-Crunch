@@ -52,6 +52,7 @@ $(document).ready(function() {
 //****************************************************
 // Graph
 
+
     Highcharts.chart('graphy', {
         chart: {
             backgroundColor: '#505393',
@@ -124,4 +125,5 @@ $(document).ready(function() {
         }]
     });
 });
+
 

@@ -44,10 +44,11 @@
                 <li class="icon fa-plus">
                     <h3>Add Food</h3>
                     <ul class="icons major">
-                        <span class="icon fa-microphone major style1" id="button" onclick="Playsound()"></span> &nbsp&nbsp&nbsp&nbsp
+                        <span class="icon fa-microphone major style1" id="button" onclick="playSound()"></span> &nbsp&nbsp&nbsp&nbsp
                         <span class="icon fa-microphone-slash major style1" id="stop"></span>
                     </ul>
                     <br>
+
                     <form method="post" action="/searchfood">
                         <input type="hidden" name="page" value="user">
                         <div class="row uniform">
@@ -170,7 +171,7 @@
                     </div>
                 </li>
                 <li class="icon fa-laptop">
-                    <h3 id="currentDate">Date: May, 26, 2017<br>Time: 5:30pm</h3>
+                    <h3 id="currentDate">Date: May, 26, 2017Time: 5:30pm</h3><br>
                     <p id="totalCalories">{{totalCalories}}</p>
                     <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>
