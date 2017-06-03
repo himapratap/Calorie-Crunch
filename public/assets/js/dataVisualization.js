@@ -53,17 +53,49 @@ Highcharts.chart('graphy', {
         backgroundColor: '#505393',
         polar: true,
         type: 'line',
-        width: 500,
-
+        // width: 500,
+        style: {
+            fontFamily: "Open Sans",
+        },
 
     },
     title: {
-        text: '7 Day Calorie History',
+        text: "",
         color:'#ffffff',
     },
     xAxis: {
         categories: ['-6 days', '-5', '-4', '-3','-2','-1' ,'Current'],
-        color:'#ffffff',
+        labels: {
+            style: {
+                color: "#ffffff",
+                font: "Open Sans"
+            }
+        },
+        title: {
+            style: {
+                color: "#ffffff",
+                fontSize: "12px",
+                fontWeight: "bold",
+                fontFamily: "Open Sans"
+            }
+        }
+    },
+    yAxis: {
+        labels: {
+            style: {
+                color: "#ffffff",
+                font: "fontAwesome"
+            }
+        },
+        title: {
+            text: "Calories",
+            style: {
+                color: "#ffffff",
+                fontSize: "12px",
+                // fontWeight: "bold",
+                fontFamily: "Open Sans"
+            }
+        }
     },
     labels: {
 

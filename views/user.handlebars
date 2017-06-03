@@ -1,6 +1,20 @@
 <!-- Page Wrapper -->
 <div id="page-wrapper">
     <!-- Header -->
+
+    {{!-- If user hits search food route, auto scroll to search results div --}}
+        {{#if dosearch}}
+        <script type="text/javascript">
+        window.onload = function() {
+            
+            var el = document.getElementById("dosearch");
+            el.scrollIntoView(true);
+            $(".fade").hide(0).fadeIn(500)
+        }
+        element.scrollIntoView();
+        </script>
+        {{/if}}
+
     <header id="header">
         <h1><a href="/">Calorie Crunch</a></h1>
         <nav id="nav">
@@ -79,23 +93,17 @@
                     </script>
                     {{!-- Div for Nutrition Facts --}}
                     <div>
-<<<<<<< HEAD
-                        {{#each items}}
-                            <button class="foodItem button special fit" data-calories= {{this.nf_calories}} data-serving-size= {{this.nf_serving_size_qty}} data-total-fat= {{this.nf_total_fat}} data-protein= {{this.nf_protein}} data-carb= {{this.nf_total_carbohydrate}} data-sugars= {{this.nf_sugars}}
-                              data-fiber={{this.nf_dietary_fiber}}  data-sodium= {{this.nf_sodium}}>{{this.item_name}}</button>
-=======
                         <!-- {{#each items}}
                         <button class="foodItem button special fit" data-calories={{this.nf_calories}} data-serving-size={{this.nf_serving_size_qty}} data-total-fat={{this.nf_total_fat}} data-protein={{this.nf_protein}} data-carb={{this.nf_total_carbohydrate}} data-sugars={{this.nf_sugars}} data-fiber={{this.nf_dietary_fiber}} data-sodium={{this.nf_sodium}}>{{this.item_name}}
                         </button>
                         {{/each}} -->
 
                         <select class="selectfoodItem">
-                        <option value="">- Please select the food- </i></option>
+                        <option value="">Please select an item</option>
                         {{#each items}}
 
                           <option class="" data-calories={{this.nf_calories}} data-serving-size={{this.nf_serving_size_qty}} data-total-fat={{this.nf_total_fat}} data-protein={{this.nf_protein}} data-carb={{this.nf_total_carbohydrate}} data-sugars={{this.nf_sugars}} data-fiber={{this.nf_dietary_fiber}} data-sodium={{this.nf_sodium}}>{{this.item_name}}
                           </option>
->>>>>>> 6d46ff799a32a5f88c55f89106215073f8d15870
                         {{/each}}
                         </select>
                     </div>
@@ -166,6 +174,7 @@
                     <p id="totalCalories">{{totalCalories}}</p>
                     <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>
+                    <br>
                     <div class="table-wrapper">
                         <table>
                             <thead>
@@ -176,7 +185,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-
                                 {{#each userProfile.entry}}
                                     <tr>
                                       <td>{{time}}</td>
@@ -184,12 +192,6 @@
                                       <td>{{totalCalories}}</td>
                                     </tr>
                                 {{/each}}
-
-                                <tr>
-                                    <td>6:00 am (Example)</td>
-                                    <td>Oatmeal (Example)</td>
-                                    <td>500 (Example)</td>
-                                </tr>
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -203,9 +205,13 @@
             </ul>
         </div>
     </section>
-    {{!-- Graph Div? --}}
-    <div id="graphy">
+
+    {{!-- Graph --}}
+    <section id="four" class="wrapper style3 special">
+    <h2>7 Day Calorie History</h2>
+    <div id="graphy" class="inner">
     </div>
+    </section>
     <!-- Footer -->
     <footer id="footer">
         <ul class="copyright">
@@ -223,6 +229,5 @@
 <script src="assets/js/jquery.scrolly.min.js"></script>
 <script src="assets/js/skel.min.js"></script>
 <script src="assets/js/util.js"></script>
-
 <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 <script src="assets/js/main.js"></script>
