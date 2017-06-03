@@ -1,3 +1,4 @@
+{{!--  Hide the User search results divs on page load --}}
 <script type="text/javascript">
     window.onload = function(){
         $("#results").hide();
@@ -16,8 +17,11 @@
         window.onload = function() {
             
             var el = document.getElementById("dosearch");
-            el.scrollIntoView(true);
             $(".fade").hide(0).fadeIn(500)
+            el.scrollIntoView(true);
+            $("#results").show();
+            $("#selection").show();
+            $("#add").show();
         }
         element.scrollIntoView();
         </script>
@@ -100,7 +104,7 @@
                         };
                     </script>
                     {{!-- Div for Nutrition Facts --}}
-                    <div>
+                    <div id="results">
                         <!-- {{#each items}}
                         <button class="foodItem button special fit" data-calories={{this.nf_calories}} data-serving-size={{this.nf_serving_size_qty}} data-total-fat={{this.nf_total_fat}} data-protein={{this.nf_protein}} data-carb={{this.nf_total_carbohydrate}} data-sugars={{this.nf_sugars}} data-fiber={{this.nf_dietary_fiber}} data-sodium={{this.nf_sodium}}>{{this.item_name}}
                         </button>
@@ -115,7 +119,7 @@
                         {{/each}}
                         </select>
                     </div>
-                    <div>
+                    <div id="add">
                         <br>
                         <form method="post" action="/addFood">
                             <input type="hidden" name="page" value="user">
@@ -137,7 +141,7 @@
                             </div>
                         </form>
                     </div>
-                    <div>
+                    <div id="selection">
                         <h2>Nutrition Facts</h2>
                         <table>
                             <thead>
