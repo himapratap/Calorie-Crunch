@@ -23,27 +23,6 @@
     bar.animate(12/14);  // Number from 0.0 to 1.0"
 
 //****************************************************
-// Date
-    currentDate =  new Date();
-    year = currentDate.getFullYear();
-    month = currentDate.getMonth() + 1;
-    date = currentDate.getDate();
-    day =currentDate.getDay();
-
-    var weekday=new Array(7);
-    weekday[0]="Sunday";
-    weekday[1]="Monday";
-    weekday[2]="Tuesday";
-    weekday[3]="Wednesday";
-    weekday[4]="Thursday";
-    weekday[5]="Friday";
-    weekday[6]="Saturday";
-
-    var dayofweek=weekday[day];
-
-
-    document.getElementById("currentDate").innerHTML = dayofweek+" "+ month + "/" + date + "/" +year;
-
 
 //****************************************************
 // Graph
