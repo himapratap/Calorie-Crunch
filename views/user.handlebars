@@ -61,6 +61,8 @@
                         <span class="icon fa-microphone major style1" id="button" onclick="Playsound()"></span> &nbsp&nbsp&nbsp&nbsp
                         <span class="icon fa-microphone-slash major style1" id="stop"></span>
                     </ul>
+                    <audio id="on" src="assets/audio/on.wav" ></audio>
+                    <audio id="off" src="assets/audio/off.wav" ></audio>
                     <br>
                     <form method="post" action="/searchfood">
                         <input type="hidden" name="page" value="user">
@@ -82,11 +84,23 @@
                     <script>
                         document.querySelector('#button').onclick = function() {
 
+                            function on(){
+                                var audio = document.getElementById("on");
+                                audio.play();
+                            }
+
+                            
+                            function off(){
+                                var audio = document.getElementById("off");
+                                audio.play();
+                            }
+
                             fetch('/api/speech-to-text/token')
                                 .then(function(response) {
                                     return response.text();
                                 }).then(function(token) {
 
+                                    on()
                                     var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
                                         token: token,
                                         outputElement: '#item'
@@ -98,6 +112,7 @@
 
                                     document.querySelector('#stop').onclick = function() {
                                         stream.stop();
+                                        off()
                                     };
 
                                 }).catch(function(error) {
@@ -191,7 +206,7 @@
                     <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>
                     <br>
-                    <div class="table-wrapper">
+                    <div class="table-wrapper 12u$(medium) 12u$(small)">
                         <table>
                             <thead>
                                 <tr>
