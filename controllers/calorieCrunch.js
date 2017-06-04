@@ -66,7 +66,8 @@ function loadUserProfile(req, res) {
 
 
         res.render("user", {
-            'userProfile': userProfile
+            'userProfile': userProfile,
+            showTitle: true
         });
 
     });
