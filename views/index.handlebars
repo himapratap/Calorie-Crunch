@@ -1,12 +1,12 @@
 <body class="landing">
     <!-- Page Wrapper -->
     <div id="page-wrapper" class="fade">
-        
+
         {{!-- If user hits search food route, auto scroll to search results div --}}
         {{#if showTitle}}
         <script type="text/javascript">
         window.onload = function() {
-            
+
             var el = document.getElementById("two");
             el.scrollIntoView(true);
             $(".fade").hide(0).fadeIn(500)
@@ -17,7 +17,7 @@
 
         <!-- Header -->
         <header id="header" class="alt">
-            <h1><a href="/">Calorie Crunch</a></h1>
+            <h1><a href="/user">Calorie Crunch</a></h1>
             <nav id="nav">
                 <ul>
                     <li class="special">

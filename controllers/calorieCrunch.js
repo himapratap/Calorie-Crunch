@@ -54,14 +54,14 @@ function loadUserProfile(req, res) {
         var totalCal = 0;
         results.map((x) => {
             totalCal += x.totalCalories
-          })
+        })
 
         let userProfile = {
             'entry': results,
             'totalCal': totalCal,
             'user': req.session.passport.user,
-            'searchResults': req.searchResults
-        }
+            'searchResults': req.searchResults,
+         }
         //console.log("userProfile.searchResults", userProfile.searchResults);
 
 
@@ -97,7 +97,16 @@ function searchFood(req, res, next) {
             //  console.log('Retrieved items after searching!',searchResults);
 
             req.searchResults = searchResults;
-            return next();
+            if (req.body.page == 'index') {
+              res.render('index', {
+                  'items': items,
+                  showTitle: true,
+                  dosearch: true
+              });
+            } else {
+                return next();
+            }
+
             // res.render(req.body.page, {
             //     'items': items,
             //     showTitle: true,
