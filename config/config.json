@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "1111",
+=======
+    "password": null,
+>>>>>>> 376598dbfd283825c0c30b6817768ebe505eb97b
     "database": "calorie_crunch",
     "host": "127.0.0.1",
     "dialect": "mysql"
@@ -16,6 +20,7 @@
   "production": {
     "username": "khh7wq9w03h9ys0r",
     "password": "kto0n68psmtorw3x",
+     "host" : "d6vscs19jtah8iwb.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
   }
