@@ -1,3 +1,12 @@
+{{!--  Hide the User search results divs on page load --}}
+<script type="text/javascript">
+    window.onload = function(){
+        $("#results").hide();
+        $("#selection").hide();
+        $("#add").hide();
+    }
+</script>
+
 <!-- Page Wrapper -->
 <div id="page-wrapper">
     <!-- Header -->
@@ -5,14 +14,19 @@
     {{!-- If user hits search food route, auto scroll to search results div --}}
     {{#if dosearch}}
         <script type="text/javascript">
-            window.onload = function() {
+ 
+        window.onload = function() {
 
-                var el = document.getElementById("dosearch");
-                el.scrollIntoView(true);
-                $(".fade").hide(0).fadeIn(500)
-            }
-            element.scrollIntoView();
-        </script>
+            var el = document.getElementById("dosearch");
+            $(".fade").hide(0).fadeIn(500)
+            el.scrollIntoView(true);
+            $("#search").hide();
+            $("#results").show();
+            $("#selection").show();
+            $("#add").show();
+        }
+        element.scrollIntoView();
+         </script>
     {{/if}}
 
     <header id="header">
@@ -42,7 +56,8 @@
             {{!-- Left Section --}}
             <ul class="features" id="dosearch">
                 <li class="icon fa-plus">
-                    <h3>Add Food</h3>
+                <h3>Add Food</h3>
+                <div id="search">
                     <ul class="icons major">
                         <span class="icon fa-microphone major style1" id="button" onclick="Playsound()"></span> &nbsp&nbsp&nbsp&nbsp
                         <span class="icon fa-microphone-slash major style1" id="stop"></span>
@@ -91,13 +106,14 @@
                                 });
                         };
                     </script>
+                    </div>
                     {{!-- Div for Nutrition Facts --}}
-                    <div>
+                    <div id="results">
                         <!-- {{#each items}}
                         <button class="foodItem button special fit" data-calories={{this.nf_calories}} data-serving-size={{this.nf_serving_size_qty}} data-total-fat={{this.nf_total_fat}} data-protein={{this.nf_protein}} data-carb={{this.nf_total_carbohydrate}} data-sugars={{this.nf_sugars}} data-fiber={{this.nf_dietary_fiber}} data-sodium={{this.nf_sodium}}>{{this.item_name}}
                         </button>
                         {{/each}} -->
-
+                        <div class="select-wrapper">
                         <select class="selectfoodItem">
                         <option value="">Please select an item</option>
                         {{#each userProfile.searchResults.items}}
@@ -106,8 +122,9 @@
                           </option>
                         {{/each}}
                         </select>
+                        </div>
                     </div>
-                    <div>
+                    <div id="add">
                         <br>
                         <form method="post" action="/addFood">
                             <input type="hidden" name="page" value="user">
@@ -129,7 +146,7 @@
                             </div>
                         </form>
                     </div>
-                    <div>
+                    <div id="selection">
                         <h2>Nutrition Facts</h2>
                         <table>
                             <thead>
@@ -166,7 +183,7 @@
                             </tbody>
                         </table>
                         <br>
-                        <a href="#dosearch" class="more scrolly button fit" style="text-decoration: none;">Do Another Search!</a>
+                        <a href="/user #three" class="more scrolly button fit" style="text-decoration: none;">Do Another Search!</a>
                     </div>
                 </li>
                 <li class="icon fa-laptop">

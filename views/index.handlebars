@@ -1,3 +1,10 @@
+{{!--  Hide the User search results divs on page load --}}
+<script type="text/javascript">
+    window.onload = function(){
+        $("#two").hide();
+    }
+</script>
+
 <body class="landing">
     <!-- Page Wrapper -->
     <div id="page-wrapper" class="fade">
@@ -9,7 +16,9 @@
 
             var el = document.getElementById("two");
             el.scrollIntoView(true);
+            $("#two").show();
             $(".fade").hide(0).fadeIn(500)
+
         }
         element.scrollIntoView();
         </script>
