@@ -44,7 +44,7 @@ function loadUserProfile(req, res) {
     db.Activity.findAll({
         where: {
             UserId: req.session.passport.user.id,
-            time: date
+            updatedAt: date
         },
 
         raw: true
@@ -54,9 +54,7 @@ function loadUserProfile(req, res) {
         var totalCal = 0;
         results.map((x) => {
             totalCal += x.totalCalories
-            x.time = moment(x.createdAt).format("hh:mm a");
-
-         })
+          })
 
         let userProfile = {
             'entry': results,
@@ -152,14 +150,12 @@ router.post("/signup", function(req, res) {
 router.post("/searchfood", searchFood, loadUserProfile);
 
 router.post("/addFood", (req, res) => {
-  var date = moment().format("YYYY-MM-DD");
 
     console.log(req.session);
     console.log("adding food", req.body);
     let activity = {
         food: req.body.food,
         quantity: req.body.quantity,
-        time:date,
         UserId: req.session.passport.user.id,
         calories: req.body.calories
     };

@@ -3,17 +3,17 @@
     <!-- Header -->
 
     {{!-- If user hits search food route, auto scroll to search results div --}}
-        {{#if dosearch}}
+    {{#if dosearch}}
         <script type="text/javascript">
-        window.onload = function() {
+            window.onload = function() {
 
-            var el = document.getElementById("dosearch");
-            el.scrollIntoView(true);
-            $(".fade").hide(0).fadeIn(500)
-        }
-        element.scrollIntoView();
+                var el = document.getElementById("dosearch");
+                el.scrollIntoView(true);
+                $(".fade").hide(0).fadeIn(500)
+            }
+            element.scrollIntoView();
         </script>
-        {{/if}}
+    {{/if}}
 
     <header id="header">
         <h1><a href="/">Calorie Crunch</a></h1>
@@ -170,7 +170,8 @@
                     </div>
                 </li>
                 <li class="icon fa-laptop">
-                    <h3 id="currentDate">Date: May, 26, 2017<br>Time: 5:30pm</h3>
+                    <h3 id="currentDate">
+<iframe src="http://free.timeanddate.com/clock/i5qyjlcz/n179/fn7/fs20/fcfff/tc4a4d89/pc4a4d89/ahl/ftb/pd3/tt0/tb1" frameborder="0" width="410" height="30"></iframe></h3>
                     <p id="totalCalories">{{totalCalories}}</p>
                     <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>
@@ -179,7 +180,7 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Time</th>
+                                    <th>Hour</th>
                                     <th>Food</th>
                                     <th>Calories</th>
                                 </tr>
@@ -187,9 +188,9 @@
                             <tbody>
                                 {{#each userProfile.entry}}
                                     <tr>
-                                      <td>{{time}}</td>
-                                      <td>{{food}}</td>
-                                      <td>{{totalCalories}}</td>
+                                        <td>{{hour}}</td>
+                                        <td>{{food}}</td>
+                                        <td>{{totalCalories}}</td>
                                     </tr>
                                 {{/each}}
                             </tbody>
@@ -208,9 +209,9 @@
 
     {{!-- Graph --}}
     <section id="four" class="wrapper style3 special">
-    <h2>7 Day Calorie History</h2>
-    <div id="graphy" class="inner">
-    </div>
+        <h2>7 Day Calorie History</h2>
+        <div id="graphy" class="inner">
+        </div>
     </section>
     <!-- Footer -->
     <footer id="footer">

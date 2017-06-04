@@ -5,11 +5,9 @@ var moment = require('moment');
 module.exports = function(sequelize, DataTypes) {
     var Activity = sequelize.define("Activity", {
             // The email cannot be null, and must be a proper email before creation
-            time: {
-                type: DataTypes.DATEONLY,
-                get: function() {
-                       return moment.utc(this.getDataValue('regDate')).format('YYYY-MM-DD');
-                     }
+            hour: {
+                type: DataTypes.STRING,
+
                 //  allowNull: false
             },
             food: {
@@ -28,6 +26,10 @@ module.exports = function(sequelize, DataTypes) {
             totalCalories: {
                 type: DataTypes.INTEGER,
                 //allowNull: false,
+            },
+            updatedAt: {
+                type: DataTypes.DATEONLY,
+
             }
 
         }, {
@@ -36,12 +38,15 @@ module.exports = function(sequelize, DataTypes) {
                 beforeCreate: (activity, options, cb) => {
                     console.log('calculating total calories');
                     activity.totalCalories = (activity.quantity * activity.calories);
+                    activity.hour = moment().format("LT");
+                    activity.updatedAt = moment().format('YYYY-MM-DD');
                     console.log('calculated total calories', activity.totalCalories);
 
                     cb(null, options);
 
                 }
-            }
+            },
+            timestamps: false
         }
 
     );
