@@ -121,7 +121,6 @@
                 }).then(function(token) {
 
                     on()
-
                     var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
                         token: token,
                         outputElement: '#item'
