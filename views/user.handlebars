@@ -9,7 +9,6 @@
 
 <!-- Page Wrapper -->
 <div id="page-wrapper">
-    <!-- Header -->
 
     {{!-- If user hits search food route, auto scroll to search results div --}}
     {{#if userProfile.searchResults.dosearch}}
@@ -18,17 +17,19 @@
         window.onload = function() {
 
             var el = document.getElementById("dosearch");
-            $(".fade").hide(0).fadeIn(500)
+
             el.scrollIntoView(true);
             $("#search").hide();
             $("#results").show();
             $("#selection").show();
             $("#add").show();
+            $(".fade").hide(0).fadeIn(500)
         }
         element.scrollIntoView();
-         </script>
+        </script>
     {{/if}}
 
+    <!-- Header -->
     <header id="header">
         <h1><a href="/">Calorie Crunch</a></h1>
         <nav id="nav">
@@ -62,6 +63,8 @@
                         <span class="icon fa-microphone major style1" id="button" onclick="Playsound()"></span> &nbsp&nbsp&nbsp&nbsp
                         <span class="icon fa-microphone-slash major style1" id="stop"></span>
                     </ul>
+                    <audio id="on" src="assets/audio/on.wav" ></audio>
+                    <audio id="off" src="assets/audio/off.wav" ></audio>
                     <br>
                     <form method="post" action="/searchfood">
                         <input type="hidden" name="page" value="user">
@@ -82,12 +85,24 @@
                     <script src="assets/js/fetch.js"></script>
                     <script>
                         document.querySelector('#button').onclick = function() {
-                                 $(".wrapper.style3 .icon.major").css("border", "#00ffcc solid 1px");
+                            function on(){
+                                var audio = document.getElementById("on");
+                                audio.play();
+                            }
+
+
+                            function off(){
+                                var audio = document.getElementById("off");
+                                audio.play();
+                            }
+
+                                 $(".wrapper.style3 .icon.major").css("border", "#00ffcc solid 1.5px");
                             fetch('/api/speech-to-text/token')
                                 .then(function(response) {
                                     return response.text();
                                 }).then(function(token) {
 
+                                    on()
                                     var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
                                         token: token,
                                         outputElement: '#item'
@@ -99,6 +114,8 @@
 
                                     document.querySelector('#stop').onclick = function() {
                                         stream.stop();
+                                        off()
+                                        $(".wrapper.style3 .icon.major").css("border", "#43467c solid 1.5px");
                                     };
 
                                 }).catch(function(error) {
@@ -188,14 +205,14 @@
                 </li>
                 <li class="icon fa-laptop">
                     <h3 id="currentDate">
-<iframe src="http://free.timeanddate.com/clock/i5qyjlcz/n179/fn7/fs20/fcfff/tc4a4d89/pc4a4d89/ahl/ftb/pd3/tt0/tb1" frameborder="0" width="410" height="30"></iframe></h3>
 
+                    <iframe src="http://free.timeanddate.com/clock/i5qyjlcz/n179/fn7/fs20/fcfff/tc4a4d89/pc4a4d89/ahl/ftb/pd3/tt0/tb1" frameborder="0" width="410" height="30"></iframe></h3>
+                    <p id="totalCalories">{{totalCalories}}</p>
 
-                    <div id="caloriesRequired">{{caloriesRequired}}</div>
                     <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>
                     <br>
-                    <div class="table-wrapper">
+                    <div class="table-wrapper 12u$(medium) 12u$(small)">
                         <table>
                             <thead>
                                 <tr>

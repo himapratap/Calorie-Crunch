@@ -39,7 +39,7 @@ router.post("/verifyLogin", passport.authenticate("local", {
 }));
 
 function loadUserProfile(req, res) {
-    var date = moment().format("YYYY-MM-DD");
+    var date = getCurrentDate();
     console.log("Current time", date);
     db.Activity.findAll({
         where: {
@@ -61,15 +61,35 @@ function loadUserProfile(req, res) {
             'caloriesPerDay': totalCal,
             'user': req.session.passport.user,
             'searchResults': req.searchResults,
-         }
+        }
         //console.log("userProfile.searchResults", userProfile.searchResults);
 
 
         res.render("user", {
-            'userProfile': userProfile
+            'userProfile': userProfile,
+            showTitle: true
         });
 
     });
+}
+
+function getWeekData(req, res) {
+    var date = minusDays(7);
+    console.log(" 7 days before", date);
+    db.Activity.findAll({
+        where: {
+            UserId: req.session.passport.user.id,
+            updatedAt: {
+                $gte: date
+            }
+        },
+
+        raw: true
+
+    }).then(function(results) {
+        console.log(results);
+    })
+
 }
 
 
@@ -98,11 +118,11 @@ function searchFood(req, res, next) {
 
             req.searchResults = searchResults;
             if (req.body.page == 'index') {
-              res.render('index', {
-                  'items': items,
-                  showTitle: true,
-                  dosearch: true
-              });
+                res.render('index', {
+                    'items': items,
+                    showTitle: true,
+                    dosearch: true
+                });
             } else {
                 return next();
             }
@@ -178,6 +198,7 @@ router.post("/signup", function(req, res) {
 
 
 router.post("/searchfood", searchFood, loadUserProfile);
+router.get("/weeklyData", getWeekData);
 
 router.post("/addFood", (req, res) => {
 
@@ -208,4 +229,14 @@ router.get('/logout', function(req, res) {
     req.logout();
     res.redirect('/');
 });
+
+function getCurrentDate() {
+    var date = moment().format("YYYY-MM-DD");
+    return date;
+}
+
+function minusDays(days) {
+    return moment().subtract(days, "days").format("YYYY-MM-DD")
+}
+
 module.exports = router;
