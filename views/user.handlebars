@@ -96,13 +96,14 @@
                                 audio.play();
                             }
 
-                                $(".wrapper.style3 .icon.major").css("border", "#00ffcc solid 1.5px");
+                                
                                 fetch('/api/speech-to-text/token')
                                 .then(function(response) {
                                     return response.text();
                                 }).then(function(token) {
 
                                     on()
+                                    $(".wrapper.style3 .icon.major").css("border", "#00ffcc solid 1.5px");
                                     var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
                                         token: token,
                                         outputElement: '#item'
