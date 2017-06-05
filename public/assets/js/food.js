@@ -15,7 +15,7 @@ $(document).ready(function() {
 
     $(".selectfoodItem").change(function() {
         let food = $("select option:selected");
-        $("#finalCalories").val(food.data("calories"));
+        $("#selectedCalories").val(food.data("calories"));
         $("#selectedFood").val(food.val());
 
         $("#calories").html(food.data("calories"));
