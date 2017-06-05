@@ -115,6 +115,7 @@
                 audio.play();
             }
 
+            $(".wrapper.style3 .icon.major").css("border", "#00ffcc solid 1.5px");
             fetch('/api/speech-to-text/token')
                 .then(function(response) {
                     return response.text();
@@ -133,6 +134,7 @@
                     document.querySelector('#stop').onclick = function() {
                         stream.stop();
                         off()
+                        $(".wrapper.style3 .icon.major").css("border", "#43467c solid 1.5px");
                     };
 
                 }).catch(function(error) {
