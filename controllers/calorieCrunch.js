@@ -143,31 +143,31 @@ router.get("/user", isAuthenticated, function(req, res) {
 
 router.post("/signup", function(req, res) {
     console.log(`Starting signup process : }`);
-    let totalCal;
+    let caloriesRequired;
     console.log(req.body.activityLevel)
     if (req.body.gender === "Male") {
 
         if(req.body.activityLevel==="low"){
-            totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5;
-            totalCal*=1.2;
+            caloriesRequired = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5;
+            caloriesRequired*=1.2;
         }else if(req.body.activityLevel==="med"){
-            totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5;
-            totalCal*=1.55;
+            caloriesRequired = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5;
+            caloriesRequired*=1.55;
         }else if(req.body.activityLevel==="high"){
-            totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5;
-            totalCal*=1.9;
+            caloriesRequired = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5;
+            caloriesRequired*=1.9;
         }
     } else {
 
         if(req.body.activityLevel==="low"){
-            totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161;
-            totalCal*=1.2;
+            caloriesRequired = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161;
+            caloriesRequired*=1.2;
         }else if(req.body.activityLevel==="med"){
-            totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161;
-            totalCal*=1.55;
+            caloriesRequired = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161;
+            caloriesRequired*=1.55;
         }else if(req.body.activityLevel==="high"){
-            totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161;
-            totalCal*=1.9;
+            caloriesRequired = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161;
+            caloriesRequired*=1.9;
         }
     }
     let user = {
@@ -179,7 +179,7 @@ router.post("/signup", function(req, res) {
         gender: req.body.gender,
         age: req.body.age,
         activityLevel: req.body.activityLevel,
-        caloriesRequired: totalCal
+        caloriesRequired: caloriesRequired
 
     };
     db.User.create(user, {

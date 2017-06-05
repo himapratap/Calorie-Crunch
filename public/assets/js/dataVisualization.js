@@ -7,6 +7,7 @@ $(document).ready(function() {
 
 
     let totalCals = $("#totalCalories").text();
+    console.log(totalCals)
     let bar = new ProgressBar.Line(progressBar, {
         strokeWidth: 4,
         easing: 'easeInOut',

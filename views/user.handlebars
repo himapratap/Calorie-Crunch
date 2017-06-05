@@ -208,7 +208,7 @@
 
                     <iframe src="http://free.timeanddate.com/clock/i5qyjlcz/n179/fn7/fs20/fcfff/tc4a4d89/pc4a4d89/ahl/ftb/pd3/tt0/tb1" frameborder="0" width="410" height="30"></iframe></h3>
 
-                    <p id="totalCalories">{{userProfile.caloriesPerDay}}</p>
+                    <p hidden id="totalCalories">{{userProfile.caloriesRequired}}</p>
 
                     <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>
@@ -249,7 +249,7 @@
     {{!-- Graph --}}
     <section id="four" class="wrapper style3 special">
         <h2>7 Day Calorie History</h2>
-        <div id="graphy" class="inner">
+        <div id="graphy" action="/weeklyData" class="inner">
         </div>
     </section>
     <!-- Footer -->
