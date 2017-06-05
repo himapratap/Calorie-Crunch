@@ -126,8 +126,22 @@ router.post("/signup", function(req, res) {
     let totalCal = 1200;
     if (req.body.gender === "Male") {
         totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5
+        if(req.body.activityLevel==="Low"){
+            totalCal*=1.2;
+        }else if(req.body.activityLevel==="Med"){
+            totalCal*=1.55;
+        }else if(req.body.activityLevel==="High"){
+            totalCal*=1.9;
+        }
     } else {
-        totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161.
+        totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161
+        if(req.body.activityLevel==="Low"){
+            totalCal*=1.2;
+        }else if(req.body.activityLevel==="Med"){
+            totalCal*=1.55;
+        }else if(req.body.activityLevel==="High"){
+            totalCal*=1.9;
+        }
     }
     let user = {
         name: req.body.name,
