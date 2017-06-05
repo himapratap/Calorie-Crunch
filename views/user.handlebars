@@ -12,9 +12,9 @@
     <!-- Header -->
 
     {{!-- If user hits search food route, auto scroll to search results div --}}
-    {{#if dosearch}}
+    {{#if userProfile.searchResults.dosearch}}
         <script type="text/javascript">
- 
+
         window.onload = function() {
 
             var el = document.getElementById("dosearch");
@@ -82,7 +82,7 @@
                     <script src="assets/js/fetch.js"></script>
                     <script>
                         document.querySelector('#button').onclick = function() {
-
+                                 $(".wrapper.style3 .icon.major").css("border", "#00ffcc solid 1px");
                             fetch('/api/speech-to-text/token')
                                 .then(function(response) {
                                     return response.text();
@@ -128,7 +128,7 @@
                         <br>
                         <form method="post" action="/addFood">
                             <input type="hidden" name="page" value="user">
-                            <input type="hidden" name="calories" id="finalCalories"></input>
+                            <input type="hidden" name="calories" id="selectedCalories"></input>
                             <input type="hidden" name="food" id="selectedFood"></input>
                             <input type="hidden" name="userId" value="{{id}}" placeholder="Name">
 
@@ -189,7 +189,7 @@
                 <li class="icon fa-laptop">
                     <h3 id="currentDate">
 <iframe src="http://free.timeanddate.com/clock/i5qyjlcz/n179/fn7/fs20/fcfff/tc4a4d89/pc4a4d89/ahl/ftb/pd3/tt0/tb1" frameborder="0" width="410" height="30"></iframe></h3>
-                    <p id="totalCalories">{{totalCalories}}</p>
+
                     <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>
                     <br>
@@ -214,7 +214,7 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td id="total">Total:{{userProfile.totalCal}}</td>
+                                    <td id="caloriesPerDay">Total:{{userProfile.caloriesPerDay}}</td>
                                 </tr>
                             </tfoot>
                         </table>
