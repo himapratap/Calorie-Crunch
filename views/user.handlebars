@@ -9,7 +9,7 @@
 
 <!-- Page Wrapper -->
 <div id="page-wrapper">
-    
+
     {{!-- If user hits search food route, auto scroll to search results div --}}
     {{#if userProfile.searchResults.dosearch}}
         <script type="text/javascript">
@@ -17,18 +17,18 @@
         window.onload = function() {
 
             var el = document.getElementById("dosearch");
-            
+
             el.scrollIntoView(true);
             $("#search").hide();
             $("#results").show();
             $("#selection").show();
             $("#add").show();
-            $(".fade").hide(0).fadeIn(500) 
+            $(".fade").hide(0).fadeIn(500)
         }
         element.scrollIntoView();
         </script>
     {{/if}}
-    
+
     <!-- Header -->
     <header id="header">
         <h1><a href="/">Calorie Crunch</a></h1>
@@ -90,7 +90,7 @@
                                 audio.play();
                             }
 
-                            
+
                             function off(){
                                 var audio = document.getElementById("off");
                                 audio.play();
