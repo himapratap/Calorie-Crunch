@@ -58,7 +58,7 @@ function loadUserProfile(req, res) {
 
         let userProfile = {
             'entry': results,
-            'totalCal': totalCal,
+            'caloriesPerDay': totalCal,
             'user': req.session.passport.user,
             'searchResults': req.searchResults,
          }
@@ -152,7 +152,7 @@ router.post("/signup", function(req, res) {
         gender: req.body.gender,
         age: req.body.age,
         activityLevel: req.body.activityLevel,
-        totalCalories: totalCal
+        caloriesRequired: totalCal
 
     };
     db.User.create(user, {
