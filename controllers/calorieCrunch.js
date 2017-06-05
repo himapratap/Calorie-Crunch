@@ -123,23 +123,30 @@ router.get("/user", isAuthenticated, function(req, res) {
 
 router.post("/signup", function(req, res) {
     console.log(`Starting signup process : }`);
-    let totalCal = 1200;
+    let totalCal;
+    console.log(req.body.activityLevel)
     if (req.body.gender === "Male") {
-        totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5
-        if(req.body.activityLevel==="Low"){
+
+        if(req.body.activityLevel==="low"){
+            totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5;
             totalCal*=1.2;
-        }else if(req.body.activityLevel==="Med"){
+        }else if(req.body.activityLevel==="med"){
+            totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5;
             totalCal*=1.55;
-        }else if(req.body.activityLevel==="High"){
+        }else if(req.body.activityLevel==="high"){
+            totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5;
             totalCal*=1.9;
         }
     } else {
-        totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161
-        if(req.body.activityLevel==="Low"){
+
+        if(req.body.activityLevel==="low"){
+            totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161;
             totalCal*=1.2;
-        }else if(req.body.activityLevel==="Med"){
+        }else if(req.body.activityLevel==="med"){
+            totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161;
             totalCal*=1.55;
-        }else if(req.body.activityLevel==="High"){
+        }else if(req.body.activityLevel==="high"){
+            totalCal = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161;
             totalCal*=1.9;
         }
     }
