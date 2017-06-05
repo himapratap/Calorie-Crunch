@@ -11,17 +11,17 @@
 
         {{!-- If user hits search food route, auto scroll to search results div --}}
         {{#if showTitle}}
-        <script type="text/javascript">
-        window.onload = function() {
+            <script type="text/javascript">
+            window.onload = function() {
 
-            var el = document.getElementById("two");
-            el.scrollIntoView(true);
-            $("#two").show();
-            $(".fade").hide(0).fadeIn(500)
+                var el = document.getElementById("two");
+                el.scrollIntoView(true);
+                $("#two").show();
+                $(".fade").hide(0).fadeIn(500)
 
-        }
-        element.scrollIntoView();
-        </script>
+            }
+            element.scrollIntoView();
+            </script>
         {{/if}}
 
         <!-- Header -->
@@ -65,12 +65,19 @@
                     <p>Tell us what you're eating!
                         <br/> Touch the microphone to speak. (ie. "An apple")</p>
                 </header>
+
                 <ul class="icons major">
-                    <li><span class="icon fa-microphone major style1" id="button"><span class="label">Lorem</span></span>
-                    </li>
-                    <li><span class="icon fa-microphone-slash major style1" id="stop"><span class="label">Lorem</span></span>
+                    <li>
+                    <span class="icon fa-microphone major style1" id="button">
+                    </span>
+                    <li>
+                    <span class="icon fa-microphone-slash major style1" id="stop">
+                    </span>
                     </li>
                 </ul>
+                <audio id="on" src="assets/audio/on.wav" ></audio>
+                <audio id="off" src="assets/audio/off.wav" ></audio>
+
                 <form method="post" action="/searchfood">
                     <input type="hidden" name="page" value="index">
                     <div class="row uniform">
@@ -97,11 +104,24 @@
         <script>
         document.querySelector('#button').onclick = function() {
 
+            function on(){
+                var audio = document.getElementById("on");
+                audio.play();
+            }
+
+            
+            function off(){
+                var audio = document.getElementById("off");
+                audio.play();
+            }
+
+            $(".wrapper.style3 .icon.major").css("border", "#00ffcc solid 1.5px");
             fetch('/api/speech-to-text/token')
                 .then(function(response) {
                     return response.text();
                 }).then(function(token) {
 
+                    on()
                     var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
                         token: token,
                         outputElement: '#item'
@@ -113,6 +133,8 @@
 
                     document.querySelector('#stop').onclick = function() {
                         stream.stop();
+                        off()
+                        $(".wrapper.style3 .icon.major").css("border", "#43467c solid 1.5px");
                     };
 
                 }).catch(function(error) {
