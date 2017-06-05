@@ -1,6 +1,6 @@
 {{!--  Hide the User search results divs on page load --}}
 <script type="text/javascript">
-    window.onload = function() {
+    window.onload = function(){
         $("#results").hide();
         $("#selection").hide();
         $("#add").hide();
@@ -9,25 +9,27 @@
 
 <!-- Page Wrapper -->
 <div id="page-wrapper">
-    <!-- Header -->
 
     {{!-- If user hits search food route, auto scroll to search results div --}}
     {{#if userProfile.searchResults.dosearch}}
         <script type="text/javascript">
-            window.onload = function() {
 
-                var el = document.getElementById("dosearch");
-                $(".fade").hide(0).fadeIn(500)
-                el.scrollIntoView(true);
-                $("#search").hide();
-                $("#results").show();
-                $("#selection").show();
-                $("#add").show();
-            }
-            element.scrollIntoView();
+        window.onload = function() {
+
+            var el = document.getElementById("dosearch");
+
+            el.scrollIntoView(true);
+            $("#search").hide();
+            $("#results").show();
+            $("#selection").show();
+            $("#add").show();
+            $(".fade").hide(0).fadeIn(500)
+        }
+        element.scrollIntoView();
         </script>
     {{/if}}
 
+    <!-- Header -->
     <header id="header">
         <h1><a href="/">Calorie Crunch</a></h1>
         <nav id="nav">
@@ -55,60 +57,72 @@
             {{!-- Left Section --}}
             <ul class="features" id="dosearch">
                 <li class="icon fa-plus">
-                    <h3>Add Food</h3>
-                    <div id="search">
-                        <ul class="icons major">
-                            <span class="icon fa-microphone major style1" id="button" onclick="Playsound()"></span> &nbsp&nbsp&nbsp&nbsp
-                            <span class="icon fa-microphone-slash major style1" id="stop"></span>
-                        </ul>
-                        <br>
-                        <form method="post" action="/searchfood">
-                            <input type="hidden" name="page" value="user">
-                            <div class="row uniform">
-                                <div class="12u 12u$(xsmall)">
-                                    <input type="text" name="foodsearch" value="" id="item" placeholder="ie. Avocado" />
-                                </div>
-                                <div class="12u$">
-                                    <ul class="actions">
-                                        <input type="submit" value="Search" class="special" id="submitfood" />
-                                        <input type="reset" value="Reset" />
-                                    </ul>
-                                </div>
+                <h3>Add Food</h3>
+                <div id="search">
+                    <ul class="icons major">
+                        <span class="icon fa-microphone major style1" id="button" onclick="Playsound()"></span> &nbsp&nbsp&nbsp&nbsp
+                        <span class="icon fa-microphone-slash major style1" id="stop"></span>
+                    </ul>
+                    <audio id="on" src="assets/audio/on.wav" ></audio>
+                    <audio id="off" src="assets/audio/off.wav" ></audio>
+                    <br>
+                    <form method="post" action="/searchfood">
+                        <input type="hidden" name="page" value="user">
+                        <div class="row uniform">
+                            <div class="12u 12u$(xsmall)">
+                                <input type="text" name="foodsearch" value="" id="item" placeholder="ie. Avocado" />
                             </div>
-                        </form>
-                        {{!-- Watson Code --}}
-                        <script src="assets/js/watson-speech.js"></script>
-                        <script src="assets/js/fetch.js"></script>
-                        <script>
-                            document.querySelector('#button').onclick = function() {
-                                $(this).css("border", "#00ffcc solid 1px");
-                                fetch('/api/speech-to-text/token')
-                                    .then(function(response) {
-                                        return response.text();
-                                    }).then(function(token) {
+                            <div class="12u$">
+                                <ul class="actions">
+                                    <input type="submit" value="Search" class="special" id="submitfood" />
+                                    <input type="reset" value="Reset" />
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                    {{!-- Watson Code --}}
+                    <script src="assets/js/watson-speech.js"></script>
+                    <script src="assets/js/fetch.js"></script>
+                    <script>
+                        document.querySelector('#button').onclick = function() {
+                            function on(){
+                                var audio = document.getElementById("on");
+                                audio.play();
+                            }
 
-                                        var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-                                            token: token,
-                                            outputElement: '#item'
-                                        });
 
-                                        stream.on('error', function(err) {
-                                            console.log(err);
-                                        });
+                            function off(){
+                                var audio = document.getElementById("off");
+                                audio.play();
+                            }
 
-                                        document.querySelector('#stop').onclick = function() {
-                                            stream.stop();
+                                 $(".wrapper.style3 .icon.major").css("border", "#00ffcc solid 1.5px");
+                            fetch('/api/speech-to-text/token')
+                                .then(function(response) {
+                                    return response.text();
+                                }).then(function(token) {
 
-                                            $("#button").css("border", "2px solid #fff)");
-                                            $("#button").css("border-color", "rgba(0, 0, 0, 0.125)");
-
-                                        };
-
-                                    }).catch(function(error) {
-                                        console.log(error);
+                                    on()
+                                    var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+                                        token: token,
+                                        outputElement: '#item'
                                     });
-                            };
-                        </script>
+
+                                    stream.on('error', function(err) {
+                                        console.log(err);
+                                    });
+
+                                    document.querySelector('#stop').onclick = function() {
+                                        stream.stop();
+                                        off()
+                                        $(".wrapper.style3 .icon.major").css("border", "#43467c solid 1.5px");
+                                    };
+
+                                }).catch(function(error) {
+                                    console.log(error);
+                                });
+                        };
+                    </script>
                     </div>
                     {{!-- Div for Nutrition Facts --}}
                     <div id="results">
@@ -117,7 +131,7 @@
                         </button>
                         {{/each}} -->
                         <div class="select-wrapper">
-                            <select class="selectfoodItem">
+                        <select class="selectfoodItem">
                         <option value="">Please select an item</option>
                         {{#each userProfile.searchResults.items}}
 
@@ -191,12 +205,12 @@
                 </li>
                 <li class="icon fa-laptop">
                     <h3 id="currentDate">
-<iframe src="http://free.timeanddate.com/clock/i5qyjlcz/n179/fn7/fs20/fcfff/tc4a4d89/pc4a4d89/ahl/ftb/pd3/tt0/tb1" frameborder="0" width="410" height="30"></iframe></h3>
-
+                    <iframe src="http://free.timeanddate.com/clock/i5qyjlcz/n179/fn7/fs20/fcfff/tc4a4d89/pc4a4d89/ahl/ftb/pd3/tt0/tb1" frameborder="0" width="410" height="30"></iframe></h3>
+                    <p id="totalCalories">{{totalCalories}}</p>
                     <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>
                     <br>
-                    <div class="table-wrapper">
+                    <div class="table-wrapper 12u$(medium) 12u$(small)">
                         <table>
                             <thead>
                                 <tr>
