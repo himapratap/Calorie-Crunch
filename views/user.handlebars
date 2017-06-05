@@ -1,6 +1,6 @@
 {{!--  Hide the User search results divs on page load --}}
 <script type="text/javascript">
-    window.onload = function(){
+    window.onload = function() {
         $("#results").hide();
         $("#selection").hide();
         $("#add").hide();
@@ -14,19 +14,18 @@
     {{!-- If user hits search food route, auto scroll to search results div --}}
     {{#if userProfile.searchResults.dosearch}}
         <script type="text/javascript">
+            window.onload = function() {
 
-        window.onload = function() {
-
-            var el = document.getElementById("dosearch");
-            $(".fade").hide(0).fadeIn(500)
-            el.scrollIntoView(true);
-            $("#search").hide();
-            $("#results").show();
-            $("#selection").show();
-            $("#add").show();
-        }
-        element.scrollIntoView();
-         </script>
+                var el = document.getElementById("dosearch");
+                $(".fade").hide(0).fadeIn(500)
+                el.scrollIntoView(true);
+                $("#search").hide();
+                $("#results").show();
+                $("#selection").show();
+                $("#add").show();
+            }
+            element.scrollIntoView();
+        </script>
     {{/if}}
 
     <header id="header">
@@ -56,56 +55,60 @@
             {{!-- Left Section --}}
             <ul class="features" id="dosearch">
                 <li class="icon fa-plus">
-                <h3>Add Food</h3>
-                <div id="search">
-                    <ul class="icons major">
-                        <span class="icon fa-microphone major style1" id="button" onclick="Playsound()"></span> &nbsp&nbsp&nbsp&nbsp
-                        <span class="icon fa-microphone-slash major style1" id="stop"></span>
-                    </ul>
-                    <br>
-                    <form method="post" action="/searchfood">
-                        <input type="hidden" name="page" value="user">
-                        <div class="row uniform">
-                            <div class="12u 12u$(xsmall)">
-                                <input type="text" name="foodsearch" value="" id="item" placeholder="ie. Avocado" />
+                    <h3>Add Food</h3>
+                    <div id="search">
+                        <ul class="icons major">
+                            <span class="icon fa-microphone major style1" id="button" onclick="Playsound()"></span> &nbsp&nbsp&nbsp&nbsp
+                            <span class="icon fa-microphone-slash major style1" id="stop"></span>
+                        </ul>
+                        <br>
+                        <form method="post" action="/searchfood">
+                            <input type="hidden" name="page" value="user">
+                            <div class="row uniform">
+                                <div class="12u 12u$(xsmall)">
+                                    <input type="text" name="foodsearch" value="" id="item" placeholder="ie. Avocado" />
+                                </div>
+                                <div class="12u$">
+                                    <ul class="actions">
+                                        <input type="submit" value="Search" class="special" id="submitfood" />
+                                        <input type="reset" value="Reset" />
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="12u$">
-                                <ul class="actions">
-                                    <input type="submit" value="Search" class="special" id="submitfood" />
-                                    <input type="reset" value="Reset" />
-                                </ul>
-                            </div>
-                        </div>
-                    </form>
-                    {{!-- Watson Code --}}
-                    <script src="assets/js/watson-speech.js"></script>
-                    <script src="assets/js/fetch.js"></script>
-                    <script>
-                        document.querySelector('#button').onclick = function() {
-                                 $(".wrapper.style3 .icon.major").css("border", "#00ffcc solid 1px");
-                            fetch('/api/speech-to-text/token')
-                                .then(function(response) {
-                                    return response.text();
-                                }).then(function(token) {
+                        </form>
+                        {{!-- Watson Code --}}
+                        <script src="assets/js/watson-speech.js"></script>
+                        <script src="assets/js/fetch.js"></script>
+                        <script>
+                            document.querySelector('#button').onclick = function() {
+                                $(this).css("border", "#00ffcc solid 1px");
+                                fetch('/api/speech-to-text/token')
+                                    .then(function(response) {
+                                        return response.text();
+                                    }).then(function(token) {
 
-                                    var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-                                        token: token,
-                                        outputElement: '#item'
+                                        var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
+                                            token: token,
+                                            outputElement: '#item'
+                                        });
+
+                                        stream.on('error', function(err) {
+                                            console.log(err);
+                                        });
+
+                                        document.querySelector('#stop').onclick = function() {
+                                            stream.stop();
+
+                                            $("#button").css("border", "2px solid #fff)");
+                                            $("#button").css("border-color", "rgba(0, 0, 0, 0.125)");
+
+                                        };
+
+                                    }).catch(function(error) {
+                                        console.log(error);
                                     });
-
-                                    stream.on('error', function(err) {
-                                        console.log(err);
-                                    });
-
-                                    document.querySelector('#stop').onclick = function() {
-                                        stream.stop();
-                                    };
-
-                                }).catch(function(error) {
-                                    console.log(error);
-                                });
-                        };
-                    </script>
+                            };
+                        </script>
                     </div>
                     {{!-- Div for Nutrition Facts --}}
                     <div id="results">
@@ -114,7 +117,7 @@
                         </button>
                         {{/each}} -->
                         <div class="select-wrapper">
-                        <select class="selectfoodItem">
+                            <select class="selectfoodItem">
                         <option value="">Please select an item</option>
                         {{#each userProfile.searchResults.items}}
 
