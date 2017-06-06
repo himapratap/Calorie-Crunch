@@ -1,9 +1,11 @@
 {{!--  Hide the User search results divs on page load --}}
 <script type="text/javascript">
     window.onload = function(){
+        var el = document.getElementById("dosearch");
         $("#results").hide();
         $("#selection").hide();
         $("#add").hide();
+        $("#page-wrapper").hide(0).fadeIn(500)
     }
 </script>
 
