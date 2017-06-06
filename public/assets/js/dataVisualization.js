@@ -4,7 +4,8 @@ $(document).ready(function() {
     //****************************************************
     //Progress Bar
 
-    let caloriesPerDay = $(".caloriesPerDay").html().split(':')[1];;
+    let caloriesPerDay = $(".caloriesPerDay").html();
+
     let caloriesRequired = $("#caloriesRequired").text();
     console.log(caloriesRequired)
     console.log(caloriesPerDay)
@@ -32,7 +33,8 @@ $(document).ready(function() {
         }
     });
 
-    bar.animate(12 / 14); // Number from 0.0 to 1.0"
+
+    bar.animate(caloriesPerDay/caloriesRequired);  // Number from 0.0 to 1.0"
 
     //****************************************************
 
@@ -51,7 +53,7 @@ $(document).ready(function() {
 
         var calRequired = [];
         calsEatenArr.map(x => calRequired.push(parseInt(caloriesRequired)))
-        console.log(`calRequired ${calRequired}}`); 
+        console.log(`calRequired ${calRequired}}`);
         Highcharts.chart('graphy', {
             chart: {
                 backgroundColor: '#505393',
@@ -121,12 +123,10 @@ $(document).ready(function() {
                     fillColor: 'white'
                 }
 
-            }]
+             }]
         });
 
     })
-
-
 
 
 });

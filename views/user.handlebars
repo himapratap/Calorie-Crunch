@@ -1,16 +1,16 @@
-{{!--  Hide the User search results divs on page load --}}
-<script type="text/javascript">
-    window.onload = function(){
-        var el = document.getElementById("dosearch");
-        $("#results").hide();
-        $("#selection").hide();
-        $("#add").hide();
-        $("#page-wrapper").hide(0).fadeIn(500)
-    }
-</script>
 
 <!-- Page Wrapper -->
 <div id="page-wrapper">
+
+    {{!--  Hide the User search results divs on page load --}}
+    <script type="text/javascript">
+        window.onload = function(){
+            var el = document.getElementById("dosearch");
+            $("#results").hide();
+            $("#selection").hide();
+            $("#add").hide();
+        }
+    </script>
 
     {{!-- If user hits search food route, auto scroll to search results div --}}
     {{#if userProfile.searchResults.dosearch}}
@@ -82,7 +82,7 @@
                             </div>
                         </div>
                     </form>
-                    {{!-- Watson Code --}}
+                     {{!-- Watson Code --}}
                     <script src="assets/js/watson-speech.js"></script>
                     <script src="assets/js/fetch.js"></script>
                     <script>
@@ -126,7 +126,7 @@
                                 });
                         };
                     </script>
-                    </div>
+              </div>
                     {{!-- Div for Nutrition Facts --}}
                     <div id="results">
                         <!-- {{#each items}}
@@ -207,19 +207,16 @@
                     </div>
                 </li>
                 <li class="icon fa-laptop">
-                    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-                    <script type="text/javascript">
-                    function update() {
-                        $('#clock').html(moment().format("dddd MMMM Do YYYY, h:mm:ss a"));
-                    }
-                    setInterval(update, 1000);
-                    </script>
+
+
+
                     <h3 id="clock"></h3>
                     {{!-- <h3 id="currentDate"></h3> --}}
                     <p id="totalCalories">{{totalCalories}}</p>
                     <h3 id="currentDate"></h3>
                     {{!-- <p id="totalCalories">{{userProfile.caloriesRequired}}</p> --}}
-                    <p id="caloriesRequired">{{userProfile.caloriesRequired}}</p>
+                    <p hidden id="caloriesRequired">{{userProfile.caloriesRequired}}</p>
+
 
                     <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>
@@ -274,6 +271,11 @@
     </footer>
 </div>
 <!-- Scripts -->
+<script src="assets/js/watson-speech.js"></script>
+<script src="assets/js/fetch.js"></script>
+<script src="assets/js/watsonButton.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<script src="assets/js/currentTime.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.5.6/dist/progressbar.js"></script>
