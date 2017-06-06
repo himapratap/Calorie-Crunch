@@ -208,10 +208,18 @@
                 </li>
                 <li class="icon fa-laptop">
 
-                    <h3 id="currentDate">
-
-                    <iframe src="http://free.timeanddate.com/clock/i5qyjlcz/n179/fn7/fs20/fcfff/tc4a4d89/pc4a4d89/ahl/ftb/pd3/tt0/tb1" frameborder="0" width="410" height="30"></iframe></h3>
-
+                    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+                    <script type="text/javascript">
+                    function update() {
+                        $('#clock').html(moment().format("dddd MMMM Do YYYY, h:mm:ss a"));
+                    }
+                    setInterval(update, 1000);
+                    </script>
+                    <h3 id="clock"></h3>
+                    {{!-- <h3 id="currentDate"></h3> --}}
+                    <p id="totalCalories">{{totalCalories}}</p>
+                    <h3 id="currentDate"></h3>
+                    {{!-- <p id="totalCalories">{{userProfile.caloriesRequired}}</p> --}}
                     <p id="caloriesRequired">{{userProfile.caloriesRequired}}</p>
 
 

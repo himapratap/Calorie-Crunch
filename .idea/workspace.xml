@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d3b944f-1d77-4cb1-9908-4c214d938bf4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.json" afterPath="$PROJECT_DIR$/config/config.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/user.handlebars" afterPath="$PROJECT_DIR$/views/user.handlebars" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -56,14 +54,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.handlebars" pinned="false" current-in-tab="false">
+      <file leaf-file-name="user.handlebars" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/views/user.handlebars">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="209" column="0" lean-forward="true" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
+            <state relative-caret-position="-204">
+              <caret line="224" column="0" lean-forward="true" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
               <folding>
                 <element signature="n#style#0;n#a#0;n#div#3;n#li#0;n#ul#0;n#div#0;n#section#0;n#div#0;n#!!top" expanded="true" />
-                <marker date="1496709033138" expanded="false" signature="11952:11958" ph="©" />
+                <marker date="1496709183769" expanded="false" signature="12399:12405" ph="©" />
               </folding>
             </state>
           </provider>
@@ -93,11 +91,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="calorieCrunch.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="calorieCrunch.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/controllers/calorieCrunch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1928">
-              <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+            <state relative-caret-position="367">
+              <caret line="192" column="31" lean-forward="true" selection-start-line="192" selection-start-column="31" selection-end-line="192" selection-end-column="31" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -128,8 +126,8 @@
     <findStrings>
       <find>getWeekData</find>
       <find>user</find>
-      <find>totalCal</find>
       <find>caloriesPerDay</find>
+      <find>totalCal</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -378,12 +376,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1496615714790</updated>
-      <workItem from="1496615716390" duration="17536000" />
+      <workItem from="1496615716390" duration="17610000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="17536000" />
+    <option name="totallyTimeSpent" value="17610000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="9" width="1364" height="726" extended-state="0" />
@@ -498,23 +496,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/user.handlebars">
+    <entry file="file://$PROJECT_DIR$/controllers/calorieCrunch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="209" column="0" lean-forward="true" selection-start-line="209" selection-start-column="0" selection-end-line="209" selection-end-column="0" />
+        <state relative-caret-position="367">
+          <caret line="192" column="31" lean-forward="true" selection-start-line="192" selection-start-column="31" selection-end-line="192" selection-end-column="31" />
           <folding>
-            <element signature="n#style#0;n#a#0;n#div#3;n#li#0;n#ul#0;n#div#0;n#section#0;n#div#0;n#!!top" expanded="true" />
-            <marker date="1496709033138" expanded="false" signature="11952:11958" ph="©" />
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controllers/calorieCrunch.js">
+    <entry file="file://$PROJECT_DIR$/views/user.handlebars">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1928">
-          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        <state relative-caret-position="-204">
+          <caret line="224" column="0" lean-forward="true" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#3;n#li#0;n#ul#0;n#div#0;n#section#0;n#div#0;n#!!top" expanded="true" />
+            <marker date="1496709183769" expanded="false" signature="12399:12405" ph="©" />
           </folding>
         </state>
       </provider>
