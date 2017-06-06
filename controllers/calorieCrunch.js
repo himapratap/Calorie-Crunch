@@ -76,7 +76,8 @@ function loadUserProfile(req, res) {
 }
 
 function getWeekData(req, res, next) {
-    var date = minusDays(7);
+    // var date = minusDays(7);
+    var date = minusDays(6);
     console.log(" 7 days before", date);
     db.Activity.findAll({
         attributes: ['updatedAt', [db.sequelize.fn('sum', db.sequelize.col('totalCalories')), 'totalCalories']],
@@ -97,10 +98,14 @@ function getWeekData(req, res, next) {
         let cals = [];
         results.map((x) => {
             days.push(moment(x.updatedAt).add("1",'days').format('YYYY-MM-DD'));
+            // days.push( x.updatedAt.toString().slice(0,10));
+            console.log("this is days" + days);
             cals.push(x.totalCalories);
         });
         req.days = days;
         req.cals = cals;
+        console.log("my test" + req.days);
+
 
         next();
     })
