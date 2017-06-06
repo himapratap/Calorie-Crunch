@@ -96,7 +96,7 @@ function getWeekData(req, res, next) {
         let days = [];
         let cals = [];
         results.map((x) => {
-            days.push(moment(x.updatedAt).format('YYYY-MM-DD'));
+            days.push(moment(x.updatedAt).add("1",'days').format('YYYY-MM-DD'));
             cals.push(x.totalCalories);
         });
         req.days = days;
