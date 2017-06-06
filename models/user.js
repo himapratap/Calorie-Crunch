@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
         },
         height: {
             type: DataTypes.INTEGER,
-            //    allowNull: false
+               // allowNull: false
         },
         weight: {
             type: DataTypes.INTEGER,
