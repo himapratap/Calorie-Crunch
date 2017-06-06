@@ -1,16 +1,16 @@
-{{!--  Hide the User search results divs on page load --}}
-<script type="text/javascript">
-    window.onload = function(){
-        var el = document.getElementById("dosearch");
-        $("#results").hide();
-        $("#selection").hide();
-        $("#add").hide();
-        $("#page-wrapper").hide(0).fadeIn(500)
-    }
-</script>
 
 <!-- Page Wrapper -->
 <div id="page-wrapper">
+
+    {{!--  Hide the User search results divs on page load --}}
+    <script type="text/javascript">
+        window.onload = function(){
+            var el = document.getElementById("dosearch");
+            $("#results").hide();
+            $("#selection").hide();
+            $("#add").hide();
+        }
+    </script>
 
     {{!-- If user hits search food route, auto scroll to search results div --}}
     {{#if userProfile.searchResults.dosearch}}
@@ -82,50 +82,6 @@
                             </div>
                         </div>
                     </form>
-                    {{!-- Watson Code --}}
-                    <script src="assets/js/watson-speech.js"></script>
-                    <script src="assets/js/fetch.js"></script>
-                    <script>
-                        document.querySelector('#button').onclick = function() {
-                            function on(){
-                                var audio = document.getElementById("on");
-                                audio.play();
-                            }
-
-
-                            function off(){
-                                var audio = document.getElementById("off");
-                                audio.play();
-                            }
-
-                                
-                                fetch('/api/speech-to-text/token')
-                                .then(function(response) {
-                                    return response.text();
-                                }).then(function(token) {
-
-                                    on()
-                                    $(".wrapper.style3 .icon.major").css("border", "#00ffcc solid 1.5px");
-                                    var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-                                        token: token,
-                                        outputElement: '#item'
-                                    });
-
-                                    stream.on('error', function(err) {
-                                        console.log(err);
-                                    });
-
-                                    document.querySelector('#stop').onclick = function() {
-                                        stream.stop();
-                                        off()
-                                        $(".wrapper.style3 .icon.major").css("border", "#43467c solid 1.5px");
-                                    };
-
-                                }).catch(function(error) {
-                                    console.log(error);
-                                });
-                        };
-                    </script>
                     </div>
                     {{!-- Div for Nutrition Facts --}}
                     <div id="results">
@@ -208,13 +164,8 @@
                 </li>
                 <li class="icon fa-laptop">
 
-                    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
-                    <script type="text/javascript">
-                    function update() {
-                        $('#clock').html(moment().format("dddd MMMM Do YYYY, h:mm:ss a"));
-                    }
-                    setInterval(update, 1000);
-                    </script>
+                    
+                    
                     <h3 id="clock"></h3>
                     {{!-- <h3 id="currentDate"></h3> --}}
                     <p id="totalCalories">{{totalCalories}}</p>
@@ -273,6 +224,11 @@
     </footer>
 </div>
 <!-- Scripts -->
+<script src="assets/js/watson-speech.js"></script>
+<script src="assets/js/fetch.js"></script>
+<script src="assets/js/watsonButton.js"></script>
+<script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+<script src="assets/js/currentTime.js"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="https://cdn.rawgit.com/kimmobrunfeldt/progressbar.js/0.5.6/dist/progressbar.js"></script>

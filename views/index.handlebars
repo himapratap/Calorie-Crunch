@@ -1,13 +1,14 @@
-{{!--  Hide the User search results divs on page load --}}
-<script type="text/javascript">
-    window.onload = function(){
-        $("#two").hide();
-    }
-</script>
+
 
 <body class="landing">
     <!-- Page Wrapper -->
     <div id="page-wrapper" class="fade">
+        {{!--  Hide the User search results divs on page load --}}
+        <script type="text/javascript">
+            window.onload = function(){
+                $("#two").hide();
+            }
+        </script>
 
         {{!-- If user hits search food route, auto scroll to search results div --}}
         {{#if showTitle}}
@@ -68,10 +69,10 @@
 
                 <ul class="icons major">
                     <li>
-                    <span class="icon fa-microphone major style1" id="button">
+                    <span class="icon fa-microphone major style1" id="button1">
                     </span>
                     <li>
-                    <span class="icon fa-microphone-slash major style1" id="stop">
+                    <span class="icon fa-microphone-slash major style1" id="stop1">
                     </span>
                     </li>
                 </ul>
@@ -98,52 +99,7 @@
                 </form>
             </div>
         </section>
-        {{!-- Watson Code --}}
-        <script src="assets/js/watson-speech.js"></script>
-        <script src="assets/js/fetch.js"></script>
-        <script>
-        document.querySelector('#button').onclick = function() {
-
-            function on(){
-                var audio = document.getElementById("on");
-                audio.play();
-            }
-
-            
-            function off(){
-                var audio = document.getElementById("off");
-                audio.play();
-            }
-
-            
-            fetch('/api/speech-to-text/token')
-                .then(function(response) {
-                    return response.text();
-                }).then(function(token) {
-
-                    on()
-                    $(".wrapper.style1 .icon.major").css("border", "#00ffcc solid 1.5px");
-                    var stream = WatsonSpeech.SpeechToText.recognizeMicrophone({
-                        token: token,
-                        outputElement: '#item'
-                    });
-
-                    stream.on('error', function(err) {
-                        console.log(err);
-                    });
-
-                    document.querySelector('#stop').onclick = function() {
-                        stream.stop();
-                        off()
-                        $(".wrapper.style1 .icon.major").css("border", "#1d9c91 solid 1.5px");
-                    };
-
-                }).catch(function(error) {
-                    console.log(error);
-                });
-        };
-        </script>
-
+    
         {{!-- Two --}}
         <section class="wrapper alt style2" id="two">
             <div class="inner">
@@ -208,24 +164,20 @@
         </section>
         <!-- Footer -->
         <footer id="footer">
-{{!--             <ul class="icons">
-                <li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-                <li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-                <li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
-                <li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-                <li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-            </ul> --}}
             <ul class="copyright">
                 <li>&copy; Calorie Crunchers Inc.</li>
             </ul>
         </footer>
     </div>
     <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/skel.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-    <script src="assets/js/main.js"></script>
+<script src="assets/js/watson-speech.js"></script>
+<script src="assets/js/fetch.js"></script>
+<script src="assets/js/WatsonIndex.js"></script>
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/skel.min.js"></script>
+<script src="assets/js/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="assets/js/main.js"></script>
 </body>
