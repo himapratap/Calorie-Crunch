@@ -45,7 +45,8 @@ $(document).ready(function() {
         var xDays = days.split(",");
         console.log(xDays);
 
-        var cals = $("#calsInAWeek").data('cals-data');
+        // var cals = $("#calsInAWeek").data('cals-data');
+        var cals = $("#calsInAWeek").attr('data-cals-data');
         var calsEatenStringArr = cals.split(",");
         var calsEatenArr = calsEatenStringArr.map(function(x) {
             return parseInt(x, 10);
