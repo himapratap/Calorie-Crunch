@@ -22,10 +22,12 @@
 
             el.scrollIntoView(true);
             $("#search").hide();
+            $("#four").hide();
             $("#results").show();
             $("#selection").show();
             $("#add").show();
             $(".fade").hide(0).fadeIn(500)
+            
         }
         element.scrollIntoView();
         </script>
@@ -72,7 +74,7 @@
                         <input type="hidden" name="page" value="user">
                         <div class="row uniform">
                             <div class="12u 12u$(xsmall)">
-                                <input type="text" name="foodsearch" value="" id="item" placeholder="ie. Avocado" />
+                                <input type="text" name="foodsearch" value="" id="item" placeholder="ie. Avocado" required/>
                             </div>
                             <div class="12u$">
                                 <ul class="actions">
@@ -155,7 +157,7 @@
                             <div class="row uniform">
                                 <div class="6u 6u$(xsmall)">
                                     <ul class="actions">
-                                        <input type="text" name="quantity" value="" placeholder="Quantity" />
+                                        <input type="text" name="quantity" value="" placeholder="Quantity" required/>
                                     </ul>
                                 </div>
                                 <div class="6u 6u$(xsmall)">
