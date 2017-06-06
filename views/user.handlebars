@@ -215,6 +215,8 @@
                     <h3 id="clock"></h3>
                     {{!-- <h3 id="currentDate"></h3> --}}
                     <p id="totalCalories">{{totalCalories}}</p>
+                    <h3 id="currentDate"></h3>
+                    <p id="totalCalories">{{userProfile.caloriesRequired}}</p>
                     <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>
                     <br>
@@ -239,7 +241,7 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="2"></td>
-                                    <td id="caloriesPerDay">Total: {{userProfile.caloriesPerDay}}</td>
+                                    <td class="caloriesPerDay">Total:{{userProfile.caloriesPerDay}}</td>
                                 </tr>
                             </tfoot>
                         </table>

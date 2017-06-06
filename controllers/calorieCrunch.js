@@ -61,6 +61,7 @@ function loadUserProfile(req, res) {
             'caloriesPerDay': totalCal,
             'user': req.session.passport.user,
             'searchResults': req.searchResults,
+            'caloriesRequired': req.session.passport.user.caloriesRequired
         }
         //console.log("userProfile.searchResults", userProfile.searchResults);
 
@@ -77,12 +78,17 @@ function getWeekData(req, res) {
     var date = minusDays(7);
     console.log(" 7 days before", date);
     db.Activity.findAll({
+        attributes: ['updatedAt',
+              [db.sequelize.fn('sum', db.sequelize.col('totalCalories')),'totalCalories']
+          ],
+
         where: {
-            UserId: req.session.passport.user.id,
+            UserId: '1',//req.session.passport.user.id,
             updatedAt: {
                 $gte: date
             }
         },
+        group: ['updatedAt'],
 
         raw: true
 
