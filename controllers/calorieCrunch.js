@@ -61,11 +61,12 @@ function loadUserProfile(req, res) {
             'caloriesPerDay': totalCal,
             'user': req.session.passport.user,
             'searchResults': req.searchResults,
-            'caloriesRequired': req.session.passport.user.caloriesRequired
+            'caloriesRequired': req.session.passport.user.caloriesRequired,
+            'daysArr': req.days,
+            'calsArr': req.cals
         }
         //console.log("userProfile.searchResults", userProfile.searchResults);
-
-
+        console.log(userProfile);
         res.render("user", {
             'userProfile': userProfile,
             showTitle: true
@@ -74,16 +75,14 @@ function loadUserProfile(req, res) {
     });
 }
 
-function getWeekData(req, res) {
+function getWeekData(req, res, next) {
     var date = minusDays(7);
     console.log(" 7 days before", date);
     db.Activity.findAll({
-        attributes: ['updatedAt',
-              [db.sequelize.fn('sum', db.sequelize.col('totalCalories')),'totalCalories']
-          ],
+        attributes: ['updatedAt', [db.sequelize.fn('sum', db.sequelize.col('totalCalories')), 'totalCalories']],
 
         where: {
-            UserId: '1',//req.session.passport.user.id,
+            UserId: req.session.passport.user.id,
             updatedAt: {
                 $gte: date
             }
@@ -94,6 +93,16 @@ function getWeekData(req, res) {
 
     }).then(function(results) {
         console.log(results);
+        let days = [];
+        let cals = [];
+        results.map((x) => {
+            days.push(moment(x.updatedAt).add("1",'days').format('YYYY-MM-DD'));
+            cals.push(x.totalCalories);
+        });
+        req.days = days;
+        req.cals = cals;
+
+        next();
     })
 
 }
@@ -143,9 +152,10 @@ function searchFood(req, res, next) {
 
 }
 
-router.get("/user", isAuthenticated, function(req, res) {
-    loadUserProfile(req, res);
-});
+router.get("/user", isAuthenticated, getWeekData, loadUserProfile);
+// function(req, res) {
+//     loadUserProfile(req, res);
+// });
 
 router.post("/signup", function(req, res) {
     console.log(`Starting signup process : }`);
@@ -153,27 +163,27 @@ router.post("/signup", function(req, res) {
     console.log(req.body.activityLevel)
     if (req.body.gender === "Male") {
 
-        if(req.body.activityLevel==="low"){
+        if (req.body.activityLevel === "low") {
             caloriesRequired = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5;
-            caloriesRequired*=1.2;
-        }else if(req.body.activityLevel==="med"){
+            caloriesRequired *= 1.2;
+        } else if (req.body.activityLevel === "med") {
             caloriesRequired = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5;
-            caloriesRequired*=1.55;
-        }else if(req.body.activityLevel==="high"){
+            caloriesRequired *= 1.55;
+        } else if (req.body.activityLevel === "high") {
             caloriesRequired = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 + 5;
-            caloriesRequired*=1.9;
+            caloriesRequired *= 1.9;
         }
     } else {
 
-        if(req.body.activityLevel==="low"){
+        if (req.body.activityLevel === "low") {
             caloriesRequired = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161;
-            caloriesRequired*=1.2;
-        }else if(req.body.activityLevel==="med"){
+            caloriesRequired *= 1.2;
+        } else if (req.body.activityLevel === "med") {
             caloriesRequired = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161;
-            caloriesRequired*=1.55;
-        }else if(req.body.activityLevel==="high"){
+            caloriesRequired *= 1.55;
+        } else if (req.body.activityLevel === "high") {
             caloriesRequired = 10 * (req.body.weight * 0.453592) + 6.25 * (req.body.height * 2.54) - 5 * 9 - 161;
-            caloriesRequired*=1.9;
+            caloriesRequired *= 1.9;
         }
     }
     let user = {
