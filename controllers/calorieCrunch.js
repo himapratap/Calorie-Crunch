@@ -76,8 +76,7 @@ function loadUserProfile(req, res) {
 }
 
 function getWeekData(req, res, next) {
-    // var date = minusDays(7);
-    var date = minusDays(6);
+    var date = minusDays(7);
     console.log(" 7 days before", date);
     db.Activity.findAll({
         attributes: ['updatedAt', [db.sequelize.fn('sum', db.sequelize.col('totalCalories')), 'totalCalories']],
