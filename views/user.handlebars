@@ -98,7 +98,7 @@
                                 audio.play();
                             }
 
-                                
+
                                 fetch('/api/speech-to-text/token')
                                 .then(function(response) {
                                     return response.text();
@@ -259,7 +259,10 @@
 
     {{!-- Graph --}}
     <section id="four" class="wrapper style3 special">
-        <h2>7 Day Calorie History</h2>
+      <h2>   <button type="button" id = "history" name="button">7 Day Calorie History</button> </h2>
+         <input id="calsInAWeek" data-cals-data= {{userProfile.calsArr}} type="text" hidden />
+        <input id="daysInAWeek" data-days-data= {{userProfile.daysArr}} type="text" hidden />
+
         <div id="graphy" action="/weeklyData" class="inner">
         </div>
     </section>
