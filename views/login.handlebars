@@ -19,24 +19,47 @@
             </nav>
         </header>
         <!-- Banner -->
-        <section class="wrapper style2 special">
+        <section class="wrapper style2">
             <div class="inner">
+                    <div class="4u -4u 12u$(small)">
                     <h2>Login</h2>
                     <form class="login" action="/verifyLogin" method="post">
-                        <div class="form-group 4u -4u 12u$(small)">
-                            <label for="email">Email address</label>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
                             <input name="email" type="email" class="form-control" id="email-input" placeholder="Email">
                         </div>
-                        <div class="form-group 4u -4u 12u$(small)">
-                            <label for="password">Password</label>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
                             <input name="password" type="password" class="form-control" id="password-input" placeholder="Password">
                         </div>
                         <button type="submit" class="button">Login</button>
                     </form>
                     <br />
                     <p>Create a new account <a href="/signup">here</a></p>
-                </div>
+                    </div>
+            </div>
         </section>
+
+        <!-- Banner -->
+{{!--         <section class="wrapper style2 special">
+            <div class="inner">
+                    <h2>Login</h2>
+                    <form class="login" action="/verifyLogin" method="post">
+                        <div class="form-group 4u -4u 12u$(small)">
+                            <label for="email">Email:</label>
+                            <input name="email" type="email" class="form-control" id="email-input" placeholder="Email">
+                        </div>
+                        <div class="form-group 4u -4u 12u$(small)">
+                            <label for="password">Password:</label>
+                            <input name="password" type="password" class="form-control" id="password-input" placeholder="Password">
+                        </div>
+                        <button type="submit" class="button">Login</button>
+                    </form>
+                    <br />
+                    <p>Create a new account <a href="/signup">here</a></p>
+            </div>
+        </section> --}}
+
         <!-- Footer -->
         <footer id="footer">
             {{!--
