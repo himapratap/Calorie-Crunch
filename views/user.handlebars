@@ -207,6 +207,7 @@
                     </div>
                 </li>
                 <li class="icon fa-laptop">
+
                     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
                     <script type="text/javascript">
                     function update() {
@@ -219,7 +220,8 @@
                     <p id="totalCalories">{{totalCalories}}</p>
                     <h3 id="currentDate"></h3>
                     {{!-- <p id="totalCalories">{{userProfile.caloriesRequired}}</p> --}}
-                    <p id="caloriesRequired">{{userProfile.caloriesRequired}}</p>
+                    <p hidden id="caloriesRequired">{{userProfile.caloriesRequired}}</p>
+
 
                     <!-- <h4>Calories Consumed: 750 <br>Total Calories left: 1500</h4> -->
                     <div id="progressBar"></div>

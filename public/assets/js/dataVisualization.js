@@ -4,8 +4,8 @@ $(document).ready(function() {
 
     //****************************************************
     //Progress Bar
-
-    let caloriesPerDay = $("#caloriesPerDay").val();
+    
+    let caloriesPerDay = $(".caloriesPerDay ").html();
     let caloriesRequired = $("#caloriesRequired").text();
     console.log(caloriesRequired)
     console.log(caloriesPerDay)
@@ -26,7 +26,7 @@ $(document).ready(function() {
         }
     });
 
-    bar.animate(12/14);  // Number from 0.0 to 1.0"
+    bar.animate(caloriesPerDay/caloriesRequired);  // Number from 0.0 to 1.0"
 
     //****************************************************
 
@@ -89,12 +89,12 @@ $(document).ready(function() {
 
             type: 'column',
             name: 'Calories Eaten',
-            data: [1400, 1419, 1650, 1419, 1500, 1419, 1300],
+            data: [1400, 1419, 1650, 1419, 1500, 1419, parseInt(caloriesPerDay)],
             color:'#21b2a6',
         }, {
             type: 'spline',
             name: 'Target Calorie',
-            data: [1419, 1419, 1419,1419, 1419, 1419, 1319],
+            data: [parseInt(caloriesRequired), parseInt(caloriesRequired), parseInt(caloriesRequired),parseInt(caloriesRequired), parseInt(caloriesRequired), parseInt(caloriesRequired), parseInt(caloriesRequired)],
             color:'#ed4933',
             marker: {
                 lineWidth: 2,
