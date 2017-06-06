@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     //****************************************************
     //Progress Bar
-
+    
     let caloriesPerDay = $(".caloriesPerDay ").html();
     let caloriesRequired = $("#caloriesRequired").text();
     console.log(caloriesRequired)
