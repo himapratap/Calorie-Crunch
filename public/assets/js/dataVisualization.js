@@ -5,9 +5,10 @@ $(document).ready(function() {
     //****************************************************
     //Progress Bar
 
-
-    let totalCals = $("#totalCalories").text();
-    console.log(totalCals)
+    let caloriesPerDay = $("#caloriesPerDay").val();
+    let caloriesRequired = $("#caloriesRequired").text();
+    console.log(caloriesRequired)
+    console.log(caloriesPerDay)
     let bar = new ProgressBar.Line(progressBar, {
         strokeWidth: 4,
         easing: 'easeInOut',
