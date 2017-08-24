@@ -13,8 +13,10 @@ var sttConfig = extend(
   {
     version: 'v1',
     url: 'https://stream.watsonplatform.net/speech-to-text/api',
-    username: process.env.STT_USERNAME || '7f4dfe88-a4af-497f-855e-1cc24d1bd9ea',
-    password: process.env.STT_PASSWORD || '6erTeowTymtX'
+    // username: process.env.STT_USERNAME || '7f4dfe88-a4af-497f-855e-1cc24d1bd9ea',
+    // password: process.env.STT_PASSWORD || '6erTeowTymtX'
+    username: process.env.STT_USERNAME || 'eea049cf-6adb-4e71-8bad-55f0687e6e13',
+    password: process.env.STT_PASSWORD || '6RxoFaeTtIpF'
   },
   vcapServices.getCredentials('speech_to_text')
 );
